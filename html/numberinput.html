@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="icon" type="image/ico" href="../icon.ico">
+    <title>Home</title>
+    <link href="../style.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,600;1,200;1,300&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <input class="numberinput" type="number" min="100" max="10000" value="2000" id="altitude"><label for="altitude">Starting Altitude</label><br>
+    <input class="numberinput" type="number" min="-600" max="600" value="0" id="offset"><label for="offset">Target Offset (position of landing pad)</label><br>
+    <input class="numberinput" type="number" min="0" max="5" step="0.1" value="1" id="density"><label for="density">Air density</label><br>
+    <input class="numberinput" type="number" min="0" max="30" value="8" id="gravity"><label for="gravity">Gravity</label><br>
+    <input class="numberinput" type="number" min="-5" max="5" value="0" id="wind"><label for="wind">Wind</label><br>
+    <input class="numberinput" type="number" min="1" max="5" step="0.1" value="3" id="power"><label for="power">Power</label><br>
+    <input class="numberinput" type="number" min="0" max="5" value="3" id="rollauth"><label for="rollauth">Roll authority (how easily you can turn)</label><br>
+    <input class="numberinput" type="number" min="0" max="100" value="100" id="fuel"><label for="fuel">Fuel</label><br>
+    <select name="terrain" id="terrain">
+      <option value="land">Land</option>
+      <option value="ship">Droneship</option>
+    </select><label for="terrain"> Terrain</label>
+    <select name="vehicle" id="vehicle">
+      <option value="f9">Falcon 9</option>
+      <option value="ss">Starship</option>
+      <option value="glenn">New Glenn</option>
+      <option value="sh">Superheavy</option>
+    </select><label for="vehicle"> Vehicle</label>
+    <select name="launching" id="launching">
+      <option value="landing">Landing Only</option>
+      <option value="launching">Full Flight</option>
+    </select><label for="launching"> Flight Profile</label>
+    
+    <p>CONTROLS: Up arrow, left arrow, right arrow</p>
+    <button id="submit" onclick="startGame();">Start Game</button>
+    <button onclick="window.location.href = '../index.html'">Slider Input</button><br><br>
+    <button id="levels" onclick="window.location.href = 'levels.html';">Select Pre-Made Level</button>
+
+    <script>
+      function startGame() {
+        window.location.href = document.getElementById("vehicle").value + ".html?altitude=" + document.getElementById("altitude").value + "&offset=" +  document.getElementById("offset").value + "&density=" + document.getElementById("density").value + "&gravity=" + document.getElementById("gravity").value + "&wind=" + document.getElementById("wind").value + "&power=" + document.getElementById("power").value + "&rollauth=" + document.getElementById("rollauth").value + "&fuel=" + document.getElementById("fuel").value + "&terrain=" + document.getElementById("terrain").value + "&launching=" + document.getElementById("launching").value
+      }
+    </script>
+  </body>
+</html>

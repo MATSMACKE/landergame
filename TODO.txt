@@ -1,0 +1,5 @@
+Set up playerObjects
+Set up activeObject
+Set up cameraPosition
+Get everything rendering correctly
+Physics and controls

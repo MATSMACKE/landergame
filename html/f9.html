@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Home</title>
+    <link href="../style.css" rel="stylesheet" type="text/css">
+    <link rel="icon" type="image/ico" href="../icon.ico">
+  </head>
+  <body id="gamebody">
+    <script src="../js/assets.js"></script>
+    <script src="../js/utilities.js"></script>
+    <script src="../js/world.js"></script>
+    <script src="../js/core.js"></script>
+    <script src="../js/visuals.js"></script>
+    <script src="../js/input.js"></script>
+    <script src="../js/physics.js"></script>
+    <script src="../js/ui.js"></script>
+
+    <script>
+      var dynamicObjects = {
+        f9 : {
+          f9s1 : assets["f9s1"],
+          f9s2 : assets["f9s2"],
+          dragon : assets["dragon"]
+        }
+      };
+      dynamicObjects.f9.f9s2.connectionPoint = ["bottom", "f9s1", "top"];
+      dynamicObjects.f9.dragon.connectionPoint = ["bottom", "f9s2", "top"];
+
+      gameArea.start();
+    </script>
+
+  </body>
+</html>

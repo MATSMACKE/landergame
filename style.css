@@ -1,0 +1,77 @@
+canvas {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-color: #8bd1fc;
+  border-style: solid;
+  border-width: 2px;
+  border-bottom-width: 3px;
+  border-top-width: 3px;
+}
+
+
+@font-face {
+    font-family: 'Custom';
+    src: url('custom.ttf');
+}
+
+* {
+  font-family:'Custom';
+}
+
+#gamebody {
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+button {
+  width: 100px;
+}
+a {
+  text-decoration-line: none;
+  margin: 5px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: black;
+  padding:5px;
+  border-radius: 5px;
+  background: #eeeeee;
+  width: 150px;
+  height: 20px;
+  color: black;
+}
+
+input {
+  -webkit-appearance: none;
+  width: 150px;
+  height: 10px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+.numberinput {
+  width: 50px;
+  height: 15px;
+  background: white;
+  margin: 2px;
+  opacity: 1;
+  border-color: grey;
+}
+
+input:hover {
+  opacity: 1;
+}
+
+#back, #forwards, #flip, #brake, #neut, #player, script, canvas, body {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.column {
+  float: left;
+  width: 25%;
+}
