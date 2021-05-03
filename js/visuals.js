@@ -1,8 +1,8 @@
 function importPlayerSprites() {
-  for (playerObject in playerObjects) {
+  for (playerObject in dynamicObjects) {
     var sprite = document.createElement("img");
-    sprite.setAttribute("id", playerObjects[playerObject].sprite);
-    sprite.setAttribute("src", "../sprites/" + playerObjects[playerObject].sprite);
+    sprite.setAttribute("id", dynamicObjects[playerObject].sprite);
+    sprite.setAttribute("src", "../sprites/" + dynamicObjects[playerObject].sprite);
     document.body.append(sprite);
   }
 }
@@ -17,7 +17,7 @@ function importWorldSprites() {
 }
 
 function drawScene() {
-  //getCameraPosition();
+  cameraPosition = getCameraPosition();
   drawGround();
   for (objectID in worldObjects) {
     drawWorldObject(worldObjects[objectID], objectID);
@@ -27,7 +27,7 @@ function drawScene() {
 //Render worldObjects
 function drawWorldObject(object, objectName) {
   draw = gameArea.context;
-  draw.drawImage(document.getElementById(objectName), object.x, gameArea.canvas.height - object.y - (object.height * 2), object.width * 2, object.height * 2);
+  draw.drawImage(document.getElementById(objectName), object.x + cameraPosition.x, gameArea.canvas.height - (object.y + (object.height * 2) + cameraPosition.y), object.width * 2, object.height * 2);
 }
 
 //Render vehicle
@@ -68,8 +68,10 @@ function drawGround(){
 
 function getCameraPosition() {
   position = {
-    x : playerObjects[activeObject].x,
-    y : playerObjects[activeObject].y
+    x : dynamicObjects[activeObject].x*2 + (gameArea.canvas.width/2),
+    y : dynamicObjects[activeObject].y*2 + (gameArea.canvas.height/2)
   };
   return position
 }
+
+var cameraPosition;

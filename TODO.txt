@@ -1,4 +1,4 @@
-Set up playerObjects
+Set up dynamicObjects
 Set up activeObject
 Set up cameraPosition
 Get everything rendering correctly
