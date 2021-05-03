@@ -43,7 +43,9 @@ var assets = {
             }
         },
         parent : false,
-        currentSprite : "default"
+        currentSprite : "default",
+        x : 0,
+        y : 0
     },
     f9s2 : {
         sprites : {
@@ -121,6 +123,6 @@ var assets = {
 }
 
 var gameColors = {
-    ground : "#318c3b",
-    ocean  : "#154e7d"
+    ground : "#4f941b",
+    ocean  : "#123263"
 }

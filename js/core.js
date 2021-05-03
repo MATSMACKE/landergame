@@ -1,5 +1,7 @@
 var paused = false;
 
+var flying = false;
+
 var gameArea = {
   canvas : document.createElement("canvas"),
   start : function() {
@@ -8,6 +10,7 @@ var gameArea = {
       this.canvas.unselectable = "on";
       this.canvas.oncontextmenu = "return false";
       this.context = this.canvas.getContext("2d");
+      draw = this.context;
       document.body.insertBefore(this.canvas, document.body.childNodes[0]);
       //generateCloudPositions();
       importWorldSprites();
@@ -21,9 +24,10 @@ var gameArea = {
 function update() {
   gameArea.clear();
   getInputs();
-  doPhysics();
+  if (flying == true) {
+    doPhysics();
+  }
   drawScene();
-  //console.log(objects.stage1.velocity);
   drawUI();
 }
 

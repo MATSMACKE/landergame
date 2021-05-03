@@ -17,16 +17,17 @@
 
     <script>
       var dynamicObjects = {
-        f9 : {
-          f9s1 : assets["f9s1"],
-          f9s2 : assets["f9s2"],
-          dragon : assets["dragon"]
-        }
+        f9s1 : assets["f9s1"],
+        f9s2 : assets["f9s2"],
+        dragon : assets["dragon"],
       };
-      dynamicObjects.f9.f9s2.connectionPoint = ["bottom", "f9s1", "top"];
-      dynamicObjects.f9.dragon.connectionPoint = ["bottom", "f9s2", "top"];
+      dynamicObjects.f9s2.connectionPoint = ["bottom", "f9s1", "top"];
+      dynamicObjects.f9s2.hasParent = true;
 
-      var activeObject = "f9";
+      dynamicObjects.dragon.connectionPoint = ["bottom", "f9s2", "top"];
+      dynamicObjects.f9s2.hasParent = true;
+
+      var activeObject = "f9s1";
 
       gameArea.start();
     </script>
