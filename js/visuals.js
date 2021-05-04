@@ -43,6 +43,10 @@ function drawDynamicObject(object, objectName) {
   width = object.width/object.sprites[object.currentSprite].decvehicle.width;
   height = object.height/object.sprites[object.currentSprite].decvehicle.height;
 
+  if (object.parent == true) {
+    x += 4;
+  }
+
   // first save the untranslated/unrotated context
   draw.save();
 
