@@ -47,12 +47,12 @@ function drawDynamicObject(object, objectName) {
     x += 4;
   }
 
-  // first save the untranslated/unrotated context
   draw.save();
 
   draw.beginPath();
-  // move the rotation point to the center of the rect
-  draw.translate(((width) / 2) + x, ((height) / 2) + y);
+
+  draw.translate((width / 2) + x, (height / 2) + y);
+  console.log(((width) / 2));
 
   // rotate the path
   draw.rotate(degrees * Math.PI / 180);

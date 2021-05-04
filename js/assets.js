@@ -94,8 +94,8 @@ var assets = {
                     height : 99
                 },
                 decvehicle : {
-                    width : 0,
-                    height : 0
+                    width : 1,
+                    height : 1
                 }
             }
         },
