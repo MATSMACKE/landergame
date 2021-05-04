@@ -1,17 +1,19 @@
 function importPlayerSprites() {
-  for (playerObject in dynamicObjects) {
-    var sprite = document.createElement("img");
-    sprite.setAttribute("id", dynamicObjects[playerObject].sprite);
-    sprite.setAttribute("src", "../sprites/" + dynamicObjects[playerObject].sprite);
-    document.body.append(sprite);
+  for (object in dynamicObjects) {
+    for (spriteName in dynamicObjects[object].sprites) {
+      var sprite = document.createElement("img");
+      sprite.setAttribute("id", dynamicObjects[object].sprites[spriteName]);
+      sprite.setAttribute("src", "../sprites/" + dynamicObjects[object].sprites[spriteName].url);
+      document.body.append(sprite);
+    }
   }
 }
 
 function importWorldSprites() {
-  for (worldObject in worldObjects) {
+  for (object in worldObjects) {
     var sprite = document.createElement("img");
-    sprite.setAttribute("id", worldObject);
-    sprite.setAttribute("src", "../sprites/" + worldObjects[worldObject].sprite);
+    sprite.setAttribute("id", object);
+    sprite.setAttribute("src", "../sprites/" + worldObjects[object].sprite);
     document.body.append(sprite);
   }
 }
@@ -29,13 +31,13 @@ function drawScene() {
 
 //Render worldObjects
 function drawWorldObject(object, objectName) {
-  draw.drawImage(document.getElementById(objectName), object.x + cameraPosition.x, gameArea.canvas.height - (object.y + (object.height) + cameraPosition.y), object.width, object.height);
+  draw.drawImage(document.getElementById(objectName), object.x*2 + cameraPosition.x, gameArea.canvas.height - (object.y*2 + (object.height*2) + cameraPosition.y), object.width*2, object.height*2);
 }
 
 //Render vehicle
 function drawDynamicObject(object, objectName) {
-  x = object.x;
-  y = object.y;
+  x = object.x + cameraPosition.x;
+  y = object.y + cameraPosition.y;
   width = object.width;
   height = object.height;
   degrees = object.angle;
@@ -46,12 +48,12 @@ function drawDynamicObject(object, objectName) {
 
   draw.beginPath();
   // move the rotation point to the center of the rect
-  draw.translate((x + width) / 2, (y + height) / 2);
+  draw.translate(((width) / 2) + x, ((height) / 2) + y);
 
   // rotate the path
   draw.rotate(degrees * Math.PI / 180);
 
-  draw.drawImage(sprite, 0, 0, 40, 100);
+  draw.drawImage(sprite, 0, 0, width*2, height*2);
 
   draw.restore();
 }
@@ -66,8 +68,8 @@ function drawGround(){
 
 function getCameraPosition() {
   position = {
-    x : dynamicObjects[activeObject].x + (gameArea.canvas.width/2),
-    y : dynamicObjects[activeObject].y + (gameArea.canvas.height/4)
+    x : dynamicObjects[activeObject].x*2 + (gameArea.canvas.width/2),
+    y : dynamicObjects[activeObject].y*2 + (gameArea.canvas.height/4)
   };
   return position
 }

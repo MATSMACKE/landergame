@@ -35,7 +35,7 @@ var assets = {
         },
         engineNumber : 9,
         height : 47.7,
-        diameter : 3.7,
+        width : 3.7,
         attachNodes : {
             top : {
                 x : 1.85,
@@ -72,7 +72,7 @@ var assets = {
         },
         engineNumber : 1,
         height : 13.8,
-        diameter : 3.7,
+        width : 3.7,
         attachNodes : {
             top : {
                 x : 1.85,
@@ -110,7 +110,7 @@ var assets = {
         },
         engineNumber : 1,
         height : 8.1,
-        diameter : 3.7,
+        width : 3.7,
         attachNodes : {
             bottom : {
                 x : 1.85,

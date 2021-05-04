@@ -14,6 +14,7 @@ var gameArea = {
       document.body.insertBefore(this.canvas, document.body.childNodes[0]);
       //generateCloudPositions();
       importWorldSprites();
+      importPlayerSprites();
       this.interval = setInterval(update, 20);
   },
   clear : function() {
