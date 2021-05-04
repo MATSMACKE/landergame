@@ -31,17 +31,17 @@ function drawScene() {
 
 //Render worldObjects
 function drawWorldObject(object, objectName) {
-  draw.drawImage(document.getElementById(objectName), object.x*2 + cameraPosition.x, gameArea.canvas.height - (object.y*2 + (object.height*2) + cameraPosition.y), object.width*2, object.height*2);
+  draw.drawImage(document.getElementById(objectName), (object.x-object.center)*2 + cameraPosition.x, gameArea.canvas.height - (object.y*2 + (object.height*2) + cameraPosition.y), object.width*2, object.height*2);
 }
 
 //Render vehicle
 function drawDynamicObject(object, objectName) {
   x = object.x + cameraPosition.x;
   y = object.y + cameraPosition.y;
-  width = object.width;
-  height = object.height;
   degrees = object.angle;
   sprite = document.getElementById(object.sprites[object.currentSprite]);
+  width = object.width/object.sprites[object.currentSprite].decvehicle.width;
+  height = object.height/object.sprites[object.currentSprite].decvehicle.height;
 
   // first save the untranslated/unrotated context
   draw.save();

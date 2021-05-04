@@ -7,7 +7,7 @@ var assets = {
                     width : 90,
                     height : 297
                 },
-                decvehicles : {
+                decvehicle : {
                     width : 0.247,
                     height : 0.974
                 }
@@ -18,7 +18,7 @@ var assets = {
                     width : 90,
                     height : 297
                 },
-                decvehicles : {
+                decvehicle : {
                     width : 0.247,
                     height : 0.974
                 }
@@ -93,7 +93,7 @@ var assets = {
                     width : 24,
                     height : 99
                 },
-                decvehicles : {
+                decvehicle : {
                     width : 0,
                     height : 0
                 }
