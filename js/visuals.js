@@ -43,8 +43,9 @@ function drawDynamicObject(object, objectName) {
   width = object.width/object.sprites[object.currentSprite].decvehicle.width;
   height = object.height/object.sprites[object.currentSprite].decvehicle.height;
 
-  if (object.parent == true) {
-    x += 4;
+  if (object.hasParent == true) {
+    x += dynamicObjects[object.connectionPoint[1]].attachNodes[object.connectionPoint[2]].x;
+    y += dynamicObjects[object.connectionPoint[1]].attachNodes[object.connectionPoint[2]].y;
   }
 
   draw.save();
@@ -52,7 +53,6 @@ function drawDynamicObject(object, objectName) {
   draw.beginPath();
 
   draw.translate((width / 2) + x, (height / 2) + y);
-  console.log(((width) / 2));
 
   // rotate the path
   draw.rotate(degrees * Math.PI / 180);

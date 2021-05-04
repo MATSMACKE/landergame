@@ -38,7 +38,7 @@ var assets = {
         width : 3.7,
         attachNodes : {
             top : {
-                x : 1.85,
+                x : 0,
                 y : 47.7
             }
         },
@@ -75,15 +75,18 @@ var assets = {
         width : 3.7,
         attachNodes : {
             top : {
-                x : 1.85,
+                x : 0,
                 y : 47.7
             },
             bottom : {
-
+                x : 0,
+                y : 0
             }
         },
         parent : false,
-        currentSprite : "default"
+        currentSprite : "default",
+        x : 0,
+        y : 0
     },
     dragon : {
         sprites : {
@@ -113,12 +116,14 @@ var assets = {
         width : 3.7,
         attachNodes : {
             bottom : {
-                x : 1.85,
+                x : 0,
                 y : 47.7
             }
         },
         parent : false,
-        currentSprite : "default"
+        currentSprite : "default",
+        x : 0,
+        y : 0
     },
 }
 
