@@ -36,25 +36,21 @@ function drawWorldObject(object, objectName) {
 
 //Render vehicle
 function drawDynamicObject(object, objectName) {
-  x = object.x + cameraPosition.x;
-  y = object.y + cameraPosition.y;
+  x = object.x*2 + cameraPosition.x;
+  y = gameArea.canvas.height - (object.y*2 + cameraPosition.y);
   degrees = object.angle;
   sprite = document.getElementById(object.sprites[object.currentSprite].url);
   width = object.width/object.sprites[object.currentSprite].decvehicle.width;
   height = object.height/object.sprites[object.currentSprite].decvehicle.height;
 
-  if (object.hasParent == true) {
-    x += dynamicObjects[object.connectionPoint[1]].attachNodes[object.connectionPoint[2]].x;
-    y += dynamicObjects[object.connectionPoint[1]].attachNodes[object.connectionPoint[2]].y;
-  }
+  if (object.hasOwnProperty(''))
 
   draw.save();
 
   draw.beginPath();
 
-  draw.translate((width / 2) + x, (height / 2) + y);
+  draw.translate(x - width, y - height*2);
 
-  // rotate the path
   draw.rotate(degrees * Math.PI / 180);
 
   draw.drawImage(sprite, 0, 0, width*2, height*2);

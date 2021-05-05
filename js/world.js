@@ -5,7 +5,7 @@ var worldObjects = {
     y : -3,
     width: 63,
     height: 146.5,
-    center: 43,
+    center: 41.5,
     angle: 0
   }/*,
   lc36 : {

@@ -18,14 +18,14 @@
     <script>
       var dynamicObjects = {
         f9s1 : assets["f9s1"],
-        f9s2 : assets["f9s2"],
-        dragon : assets["dragon"],
       };
-      dynamicObjects.f9s2.connectionPoint = ["bottom", "f9s1", "top"];
-      dynamicObjects.f9s2.hasParent = true;
-
-      dynamicObjects.dragon.connectionPoint = ["bottom", "f9s2", "top"];
-      dynamicObjects.f9s2.hasParent = true;
+      
+      dynamicObjects.f9s1.children = {
+        f9s2 : assets["f9s2"]
+      };
+      dynamicObjects.f9s1.children.f9s2.children = {
+        dragon : assets["dragon"]
+      };
 
       var activeObject = "f9s1";
 

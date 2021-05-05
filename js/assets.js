@@ -1,3 +1,11 @@
+function Vehicle(asset, hasParent, children) {
+    for (propertyName in assets[asset]) {
+        this[propertyName] = assets[asset][propertyName];
+    }
+    this.hasParent = hasParent;
+    this.children = children;
+}
+
 var assets = {
     f9s1 : {
         sprites : {
@@ -39,7 +47,7 @@ var assets = {
         attachNodes : {
             top : {
                 x : 0,
-                y : 47.7
+                y : 47
             }
         },
         parent : false,
@@ -76,7 +84,7 @@ var assets = {
         attachNodes : {
             top : {
                 x : 0,
-                y : 47.7
+                y : 47+13.8
             },
             bottom : {
                 x : 0,
@@ -97,7 +105,7 @@ var assets = {
                     height : 99
                 },
                 decvehicle : {
-                    width : 1,
+                    width : 24/30,
                     height : 1
                 }
             }
