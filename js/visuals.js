@@ -2,7 +2,7 @@ function importPlayerSprites() {
   for (object in dynamicObjects) {
     for (spriteName in dynamicObjects[object].sprites) {
       var sprite = document.createElement("img");
-      sprite.setAttribute("id", dynamicObjects[object].sprites[spriteName]);
+      sprite.setAttribute("id", dynamicObjects[object].sprites[spriteName].url);
       sprite.setAttribute("src", "../sprites/" + dynamicObjects[object].sprites[spriteName].url);
       document.body.append(sprite);
     }
@@ -39,7 +39,7 @@ function drawDynamicObject(object, objectName) {
   x = object.x + cameraPosition.x;
   y = object.y + cameraPosition.y;
   degrees = object.angle;
-  sprite = document.getElementById(object.sprites[object.currentSprite]);
+  sprite = document.getElementById(object.sprites[object.currentSprite].url);
   width = object.width/object.sprites[object.currentSprite].decvehicle.width;
   height = object.height/object.sprites[object.currentSprite].decvehicle.height;
 
