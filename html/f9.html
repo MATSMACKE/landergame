@@ -17,14 +17,7 @@
 
     <script>
       var dynamicObjects = {
-        f9s1 : assets["f9s1"],
-      };
-      
-      dynamicObjects.f9s1.children = {
-        f9s2 : assets["f9s2"]
-      };
-      dynamicObjects.f9s1.children.f9s2.children = {
-        dragon : assets["dragon"]
+        f9s1: new Vehicle("f9s1", false, {f9s2 : new Vehicle("f9s2", true, {dragon : new Vehicle("dragon", true)})})
       };
 
       var activeObject = "f9s1";

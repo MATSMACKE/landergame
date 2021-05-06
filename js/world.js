@@ -7,14 +7,16 @@ var worldObjects = {
     height: 146.5,
     center: 41.5,
     angle: 0
-  }/*,
+  },
   lc36 : {
     sprite : "lc36.png",
     x : 7000,
     y : 0,
-    width : 0,
+    width : 480,
+    height: 150,
+    center : 924,
     angle: 0
-  },
+  }/*,
   bocaChica : {
     sprite : "bocaChica.png",
     x : -1837000,
