@@ -1,9 +1,3 @@
-function doPhysics() {
-    for (object in dynamicObjects) {
-
-    }
-}
-
-function doMechanics(object) {
-    
-}
+Vehicle.prototype.doPhysics = function() {
+    return
+};

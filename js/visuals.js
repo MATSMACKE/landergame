@@ -25,7 +25,7 @@ function drawScene() {
     drawWorldObject(worldObjects[objectID], objectID);
   }
   for (objectID in dynamicObjects) {
-    drawDynamicObject(dynamicObjects[objectID], objectID);
+    dynamicObjects[objectID].draw();
   }
 }
 
@@ -34,16 +34,15 @@ function drawWorldObject(object, objectName) {
   draw.drawImage(document.getElementById(objectName), (object.x-object.center)*2 + cameraPosition.x, gameArea.canvas.height - (object.y*2 + (object.height*2) + cameraPosition.y), object.width*2, object.height*2);
 }
 
-//Render vehicle
-function drawDynamicObject(object, objectName) {
-  x = object.x*2 + cameraPosition.x;
-  y = gameArea.canvas.height - (object.y*2 + cameraPosition.y);
-  degrees = object.angle;
-  sprite = document.getElementById(object.sprites[object.currentSprite].url);
-  width = object.width/object.sprites[object.currentSprite].decvehicle.width;
-  height = object.height/object.sprites[object.currentSprite].decvehicle.height;
+Vehicle.prototype.draw = function() {
+  x = this.x*2 + cameraPosition.x;
+  y = gameArea.canvas.height - (this.y*2 + cameraPosition.y);
+  degrees = this.angle;
+  sprite = document.getElementById(this.sprites[this.currentSprite].url);
+  width = this.width/this.sprites[this.currentSprite].decvehicle.width;
+  height = this.height/this.sprites[this.currentSprite].decvehicle.height;
 
-  if (object.hasOwnProperty(''))
+  if (this.hasOwnProperty(''))
 
   draw.save();
 
@@ -56,6 +55,10 @@ function drawDynamicObject(object, objectName) {
   draw.drawImage(sprite, 0, 0, width*2, height*2);
 
   draw.restore();
+};
+
+function drawDynamicObject(object, objectName) {
+  return;
 }
 
 function drawGround(){
