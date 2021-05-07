@@ -1,10 +1,18 @@
-function Vehicle(asset, hasParent, children) {
+function Vehicle(asset, parent, children, name) {
     for (propertyName in assets[asset]) {
         this[propertyName] = assets[asset][propertyName];
     }
-    this.hasParent = hasParent;
-    if (children != 0) {
+    if (parent != false) {
+        this.parent = parent;
+    }
+    if (children != false) {
         this.children = children;
+    }
+    if (dynObjects[this.parent].parent == false) {
+        this.highestParent = this.parent;
+    }
+    else {
+        this.highestParent = dynObjects[this.parent].highestParent;
     }
 }
 
@@ -55,7 +63,7 @@ var assets = {
         parent : false,
         currentSprite : "default",
         x : 0,
-        y : 0
+        y : 23.85
     },
     f9s2 : {
         sprites : {

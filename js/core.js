@@ -28,6 +28,7 @@ function update() {
   if (flying == true) {
     doPhysics();
   }
+  doHierarchySync();
   drawScene();
   drawUI();
 }

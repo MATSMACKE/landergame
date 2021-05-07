@@ -1,4 +1,4 @@
-Set up dynamicObjects
+Set up dynObjects
 Set up activeObject
 Set up cameraPosition
 Get everything rendering correctly

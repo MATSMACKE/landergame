@@ -16,8 +16,10 @@
     <script src="../js/ui.js"></script>
 
     <script>
-      var dynamicObjects = {
-        f9s1: new Vehicle("f9s1", false, {f9s2 : new Vehicle("f9s2", "f9s1", {dragon : new Vehicle("dragon", "f9s2", false)})})
+      var dynObjects = {
+        f9s1: new Vehicle("f9s1", false, ["f9s2"], "f9s1"),
+        f9s2: new Vehicle("f9s2", "f9s1", ["dragon"], "f9s2"),
+        dragon: new Vehicle("dragon", "f9s2", false, "dragon")
       };
 
       var activeObject = "f9s1";

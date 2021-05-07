@@ -1,9 +1,9 @@
 function importPlayerSprites() {
-  for (object in dynamicObjects) {
-    for (spriteName in dynamicObjects[object].sprites) {
+  for (object in dynObjects) {
+    for (spriteName in dynObjects[object].sprites) {
       var sprite = document.createElement("img");
-      sprite.setAttribute("id", dynamicObjects[object].sprites[spriteName].url);
-      sprite.setAttribute("src", "../sprites/" + dynamicObjects[object].sprites[spriteName].url);
+      sprite.setAttribute("id", dynObjects[object].sprites[spriteName].url);
+      sprite.setAttribute("src", "../sprites/" + dynObjects[object].sprites[spriteName].url);
       document.body.append(sprite);
     }
   }
@@ -24,8 +24,8 @@ function drawScene() {
   for (objectID in worldObjects) {
     drawWorldObject(worldObjects[objectID], objectID);
   }
-  for (objectID in dynamicObjects) {
-    dynamicObjects[objectID].draw();
+  for (objectID in dynObjects) {
+    dynObjects[objectID].draw();
   }
 }
 
@@ -71,8 +71,8 @@ function drawGround(){
 
 function getCameraPosition() {
   position = {
-    x : dynamicObjects[activeObject].x*2 + (gameArea.canvas.width/2),
-    y : dynamicObjects[activeObject].y*2 + (gameArea.canvas.height/4)
+    x : dynObjects[activeObject].x*2 + (gameArea.canvas.width/2),
+    y : dynObjects[activeObject].y*2 + (gameArea.canvas.height/4)
   };
   return position
 }
