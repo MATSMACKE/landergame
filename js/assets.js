@@ -2,17 +2,18 @@ function Vehicle(asset, parent, children, name) {
     for (propertyName in assets[asset]) {
         this[propertyName] = assets[asset][propertyName];
     }
-    if (parent != false) {
-        this.parent = parent;
-    }
-    if (children != false) {
-        this.children = children;
-    }
-    if (dynObjects[this.parent].parent == false) {
-        this.highestParent = this.parent;
-    }
-    else {
-        this.highestParent = dynObjects[this.parent].highestParent;
+    this.parent = parent;
+    this.children = children;
+}
+
+function dynObjectsSetup() {
+    for (objectID in dynObjects) {
+        if (dynObjects[dynObjects[objectID].parent].parent == false) {
+            dynObjects[objectID].highestParent = dynObjects[objectID].parent;
+        }
+        else {
+            dynObjects[objectID].highestParent = dynObjects[dynObjects[objectID].parent].highestParent;
+        }
     }
 }
 
