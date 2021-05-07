@@ -2,7 +2,8 @@ function importSprites(object, type, objectName) {
   if (type == "dynamic") {
     for (spriteName in object.sprites) {
       var sprite = document.createElement("img");
-      sprite.setAttribute("id", object.sprites[spriteName].url);
+      sprite.setAttribute("id", objectName+spriteName);
+      console.log(objectName+spriteName);
       sprite.setAttribute("src", "../sprites/" + object.sprites[spriteName].url);
       document.body.append(sprite);
     }
@@ -24,7 +25,7 @@ function importSprites(object, type, objectName) {
 function importPlayerSprites() {
   for (object in dynamicObjects) {
     currentObject = dynamicObjects[object];
-    importSprites(currentObject, "player");
+    importSprites(currentObject, "dynamic", object);
   }
 }
 
@@ -54,7 +55,7 @@ Vehicle.prototype.draw = function() {
   x = this.x*2 + cameraPosition.x;
   y = gameArea.canvas.height - (this.y*2 + cameraPosition.y);
   degrees = this.angle;
-  sprite = document.getElementById(this.sprites[this.currentSprite].url);
+  sprite = document.getElementById(this.constructor.name +this.currentSprite);
   width = this.width/this.sprites[this.currentSprite].decvehicle.width;
   height = this.height/this.sprites[this.currentSprite].decvehicle.height;
 
