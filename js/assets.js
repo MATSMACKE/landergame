@@ -3,7 +3,9 @@ function Vehicle(asset, hasParent, children) {
         this[propertyName] = assets[asset][propertyName];
     }
     this.hasParent = hasParent;
-    this.children = children;
+    if (children != 0) {
+        this.children = children;
+    }
 }
 
 var assets = {

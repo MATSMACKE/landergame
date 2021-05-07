@@ -56,8 +56,6 @@ function drawFuelIndicator() {
   draw.fillStyle = "green";
   draw.fillRect(10, window.innerHeight - 60, (objects[activeObject].position.x/1200000)*(window.innerWidth - 20), 30);
 
-  var upCoastTime = (objects[activeObject].velocity.y/(bodies[objects[activeObject].body].gravity * urlGravity));
-
   var downCoastTime = (Math.sqrt(2*(bodies[objects[activeObject].body].gravity * urlGravity)*(objects[activeObject].position.y) + Math.pow(objects[activeObject].velocity.y, 2)) - objects[activeObject].velocity.y)/(bodies[objects[activeObject].body].gravity * urlGravity);
   downCoastTime -= 128;
 
