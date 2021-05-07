@@ -1,20 +1,36 @@
-function importPlayerSprites() {
-  for (object in dynamicObjects) {
-    for (spriteName in dynamicObjects[object].sprites) {
+function importSprites(object, type, objectName) {
+  if (type == "dynamic") {
+    for (spriteName in object.sprites) {
       var sprite = document.createElement("img");
-      sprite.setAttribute("id", dynamicObjects[object].sprites[spriteName].url);
-      sprite.setAttribute("src", "../sprites/" + dynamicObjects[object].sprites[spriteName].url);
+      sprite.setAttribute("id", object.sprites[spriteName].url);
+      sprite.setAttribute("src", "../sprites/" + object.sprites[spriteName].url);
       document.body.append(sprite);
     }
+
+    if (object[children] != false) {
+      for (child in object[children]) {
+        importSprites(object[children][child]);
+      }
+    }
+  }
+  if (type == "world") {
+    var sprite = document.createElement("img");
+    sprite.setAttribute("id", objectName);
+    sprite.setAttribute("src", "../sprites/" + object.sprite);
+    document.body.append(sprite);
+  }
+}
+
+function importPlayerSprites() {
+  for (object in dynamicObjects) {
+    currentObject = dynamicObjects[object];
+    importSprites(currentObject, "player");
   }
 }
 
 function importWorldSprites() {
   for (object in worldObjects) {
-    var sprite = document.createElement("img");
-    sprite.setAttribute("id", object);
-    sprite.setAttribute("src", "../sprites/" + worldObjects[object].sprite);
-    document.body.append(sprite);
+    importSprites(worldObjects[object], "world", object);
   }
 }
 
