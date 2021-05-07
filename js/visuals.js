@@ -1,20 +1,37 @@
-function importPlayerSprites() {
-  for (object in dynObjects) {
-    for (spriteName in dynObjects[object].sprites) {
+function importSprites(object, type, objectName) {
+  if (type == "dynamic") {
+    for (spriteName in object.sprites) {
       var sprite = document.createElement("img");
-      sprite.setAttribute("id", dynObjects[object].sprites[spriteName].url);
-      sprite.setAttribute("src", "../sprites/" + dynObjects[object].sprites[spriteName].url);
+      sprite.setAttribute("id", objectName+spriteName);
+      console.log(objectName+spriteName);
+      sprite.setAttribute("src", "../sprites/" + object.sprites[spriteName].url);
       document.body.append(sprite);
     }
+
+    if (object[children] != false) {
+      for (child in object[children]) {
+        importSprites(object[children][child]);
+      }
+    }
+  }
+  if (type == "world") {
+    var sprite = document.createElement("img");
+    sprite.setAttribute("id", objectName);
+    sprite.setAttribute("src", "../sprites/" + object.sprite);
+    document.body.append(sprite);
+  }
+}
+
+function importPlayerSprites() {
+  for (object in dynamicObjects) {
+    currentObject = dynamicObjects[object];
+    importSprites(currentObject, "dynamic", object);
   }
 }
 
 function importWorldSprites() {
   for (object in worldObjects) {
-    var sprite = document.createElement("img");
-    sprite.setAttribute("id", object);
-    sprite.setAttribute("src", "../sprites/" + worldObjects[object].sprite);
-    document.body.append(sprite);
+    importSprites(worldObjects[object], "world", object);
   }
 }
 
@@ -38,11 +55,15 @@ Vehicle.prototype.draw = function() {
   x = this.x*2 + cameraPosition.x;
   y = gameArea.canvas.height - (this.y*2 + cameraPosition.y);
   degrees = this.angle;
-  sprite = document.getElementById(this.sprites[this.currentSprite].url);
+  sprite = document.getElementById(this.constructor.name +this.currentSprite);
   width = this.width/this.sprites[this.currentSprite].decvehicle.width;
   height = this.height/this.sprites[this.currentSprite].decvehicle.height;
 
-  if (this.hasOwnProperty(''))
+  if (this.children != false) {
+    for (child in this.children) {
+      this.children[child].draw();
+    }
+  }
 
   draw.save();
 
