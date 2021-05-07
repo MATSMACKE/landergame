@@ -42,7 +42,11 @@ Vehicle.prototype.draw = function() {
   width = this.width/this.sprites[this.currentSprite].decvehicle.width;
   height = this.height/this.sprites[this.currentSprite].decvehicle.height;
 
-  if (this.hasOwnProperty(''))
+  if (this.children != false) {
+    for (child in this.children) {
+      this.children[child].draw();
+    }
+  }
 
   draw.save();
 

@@ -1,8 +1,8 @@
-function Vehicle(asset, hasParent, children) {
+function Vehicle(asset, parent, children) {
     for (propertyName in assets[asset]) {
         this[propertyName] = assets[asset][propertyName];
     }
-    this.hasParent = hasParent;
+    this.parent = parent;
     if (children != 0) {
         this.children = children;
     }
