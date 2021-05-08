@@ -34,8 +34,10 @@ function drawScene() {
   for (objectID in worldObjects) {
     drawWorldObject(worldObjects[objectID], objectID);
   }
-  for (objectID in dynObjects) {
-    dynObjects[objectID].draw();
+  for (layer in visualLayers) {
+    for (objectID in visualLayers[layer]) {
+      dynObjects[visualLayers[layer][objectID]].draw();
+    }
   }
 }
 

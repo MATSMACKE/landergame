@@ -10,7 +10,6 @@ var gameArea = {
       this.canvas.unselectable = "on";
       this.canvas.oncontextmenu = "return false";
       this.context = this.canvas.getContext("2d");
-      draw = this.context;
       document.body.insertBefore(this.canvas, document.body.childNodes[0]);
       //generateCloudPositions();
       importWorldSprites();

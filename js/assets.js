@@ -79,7 +79,7 @@ var assets = {
                     height : 100
                 },
                 decvehicle : {
-                    width : 0.9,
+                    width : 0.93,
                     height : 1
                 }
             }
@@ -103,7 +103,7 @@ var assets = {
             },
             bottom : {
                 x : 0,
-                y : 0
+                y : 2.3
             }
         },
         parent : false,

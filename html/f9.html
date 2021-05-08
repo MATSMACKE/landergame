@@ -24,6 +24,17 @@
         dragon: new Vehicle("dragon", "f9s2", false, ["top", "bottom"])
       };
 
+      var visualLayers = [
+        ["f9s2", "dragon"],
+        ["f9s1"]
+      ];
+      
+      var physicsLayers = [
+        ["f9s1"],
+        ["f9s2"],
+        ["dragon"]
+      ]
+
       dynObjectsSetup();
 
       var activeObject = "f9s1";
