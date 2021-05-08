@@ -19,9 +19,9 @@
 
     <script>
       var dynObjects = {
-        f9s1: new Vehicle("f9s1", false, ["f9s2"], "f9s1"),
-        f9s2: new Vehicle("f9s2", "f9s1", ["dragon"], "f9s2"),
-        dragon: new Vehicle("dragon", "f9s2", false, "dragon")
+        f9s1: new Vehicle("f9s1", false, ["f9s2"], []),
+        f9s2: new Vehicle("f9s2", "f9s1", ["dragon"], ["top", "bottom"]),
+        dragon: new Vehicle("dragon", "f9s2", false, ["top", "bottom"])
       };
 
       dynObjectsSetup();

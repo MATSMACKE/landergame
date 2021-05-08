@@ -3,7 +3,6 @@ function importSprites(object, type, objectName) {
     for (spriteName in object.sprites) {
       var sprite = document.createElement("img");
       sprite.setAttribute("id", object.sprites[spriteName].url);
-      console.log(objectName+spriteName);
       sprite.setAttribute("src", "../sprites/" + object.sprites[spriteName].url);
       document.body.append(sprite);
     }

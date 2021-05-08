@@ -1,9 +1,10 @@
-function Vehicle(asset, parent, children, name) {
+function Vehicle(asset, parent, children, connection) {
     for (propertyName in assets[asset]) {
         this[propertyName] = assets[asset][propertyName];
     }
     this.parent = parent;
     this.children = children;
+    this.connection = connection;
 }
 
 function dynObjectsSetup() {
@@ -75,10 +76,10 @@ var assets = {
                 url : "f9s2.png",
                 px : {
                     width : 24,
-                    height : 99
+                    height : 100
                 },
                 decvehicle : {
-                    width : 0.925,
+                    width : 0.9,
                     height : 1
                 }
             }
@@ -98,7 +99,7 @@ var assets = {
         attachNodes : {
             top : {
                 x : 0,
-                y : 47+13.8
+                y : 13.8
             },
             bottom : {
                 x : 0,
@@ -139,7 +140,7 @@ var assets = {
         attachNodes : {
             bottom : {
                 x : 0,
-                y : 47.7
+                y : 0
             }
         },
         parent : false,

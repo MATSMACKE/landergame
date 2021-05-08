@@ -1,7 +1,9 @@
 function doHierarchySync(){
     for (object in dynObjects){
         if (dynObjects[object].parent != false){
-            dynObjects[object].y = dynObjects[dynObjects[object].parent].y + dynObjects[dynObjects[object].parent].height/2;
+            var thisObject = dynObjects[object];
+            var parentObject = dynObjects[dynObjects[object].parent];
+            dynObjects[object].y = parentObject.y + parentObject.attachNodes[thisObject.connection[0]].y/2 - thisObject.attachNodes[thisObject.connection[1]].y/2;
         }
     }
 }
