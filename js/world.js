@@ -2,7 +2,7 @@ var worldObjects = {
   lc39a : {
     sprite : "lc39a.png",
     x : 0,
-    y : -3,
+    y : -18,
     width: 63,
     height: 146.5,
     center: 41.5,

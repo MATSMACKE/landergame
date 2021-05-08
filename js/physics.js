@@ -1,7 +1,7 @@
 function doHierarchySync(){
     for (object in dynObjects){
         if (dynObjects[object].parent != false){
-            dynObjects[object].y += dynObjects[object].highestParent.y;
+            dynObjects[object].y = dynObjects[dynObjects[object].parent].y + dynObjects[dynObjects[object].parent].height/2;
         }
     }
 }

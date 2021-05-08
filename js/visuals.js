@@ -49,7 +49,7 @@ Vehicle.prototype.draw = function() {
   x = this.x*2 + cameraPosition.x;
   y = gameArea.canvas.height - (this.y*2 + cameraPosition.y);
   degrees = this.angle;
-  sprite = document.getElementById(this.sprites[spriteName].url);
+  sprite = document.getElementById(this.sprites[this.currentSprite].url);
   width = this.width/this.sprites[this.currentSprite].decvehicle.width;
   height = this.height/this.sprites[this.currentSprite].decvehicle.height;
 
@@ -57,7 +57,7 @@ Vehicle.prototype.draw = function() {
 
   draw.beginPath();
 
-  draw.translate(x - width, y - height*2);
+  draw.translate(x - width, y - height);
 
   draw.rotate(degrees * Math.PI / 180);
 
