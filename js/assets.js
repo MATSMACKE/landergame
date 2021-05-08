@@ -8,12 +8,15 @@ function Vehicle(asset, parent, children, name) {
 
 function dynObjectsSetup() {
     for (objectID in dynObjects) {
-        if (dynObjects[dynObjects[objectID].parent].parent == false) {
-            dynObjects[objectID].highestParent = dynObjects[objectID].parent;
+        if (dynObjects[objectID].parent != false) {
+            if (dynObjects[dynObjects[objectID].parent].parent == false) {
+                dynObjects[objectID].highestParent = dynObjects[objectID].parent;
+            }
+            else {
+                dynObjects[objectID].highestParent = dynObjects[dynObjects[objectID].parent].highestParent;
+            }
         }
-        else {
-            dynObjects[objectID].highestParent = dynObjects[dynObjects[objectID].parent].highestParent;
-        }
+        else {dynObjects[objectID].highestParent = objectID;}
     }
 }
 
