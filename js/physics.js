@@ -20,10 +20,10 @@ Vehicle.prototype.doPhysics = function() {
     if (this.parent == false) {
         this.doMechanics();
         if (throttle > 0) {
-            this.calculateThrust(1);
+            this.calculateThrust(throttle);
         }
         if (rollThrottle != 0) {
-            this.calculateRollThrust();
+            this.calculateRollThrust(rollThrottle);
         }
     }
 
@@ -44,4 +44,8 @@ Vehicle.prototype.doMechanics = function() {
 
 Vehicle.prototype.calculateThrust = function (throttle) {
     this.velocity.y += this.thrust.sealvl/((this.mass.dry + this.mass.fuel) * 50);
+}
+
+Vehicle.prototype.calculateRollThrust = function(rollThrottle) {
+    this.velocity.angular += rollThrottle*this.rollFactor/50;
 }

@@ -43,7 +43,7 @@ var assets = {
                     height : 0.974
                 }
             },
-            status2 : {
+            s1 : {
                 url : "f9legsout.png",
                 px : {
                     width : 90,
@@ -75,6 +75,7 @@ var assets = {
         },
         parent : false,
         currentSprite : "default",
+        rollFactor : 0.1
     },
     f9s2 : {
         sprites : {
@@ -114,6 +115,7 @@ var assets = {
         },
         parent : false,
         currentSprite : "default",
+        rollFactor : 0.1
     },
     dragon : {
         sprites : {
@@ -149,6 +151,7 @@ var assets = {
         },
         parent : false,
         currentSprite : "default",
+        rollFactor : 0.1
     },
 }
 

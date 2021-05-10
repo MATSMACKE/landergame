@@ -46,6 +46,7 @@ function drawWorldObject(object, objectName) {
   draw.drawImage(document.getElementById(objectName), (object.x-object.center)*2 + cameraPosition.x, gameArea.canvas.height - (object.y*2 + (object.height*2) + cameraPosition.y), object.width*2, object.height*2);
 }
 
+/*
 Vehicle.prototype.draw = function() {
   x = this.x*2 + cameraPosition.x;
   y = gameArea.canvas.height - (this.y*2 + cameraPosition.y);
@@ -66,6 +67,30 @@ Vehicle.prototype.draw = function() {
 
   draw.restore();
 };
+*/
+
+Vehicle.prototype.draw = function() {
+  x = this.x*2 + cameraPosition.x;
+  y = gameArea.canvas.height - (this.y*2 + cameraPosition.y);
+
+  angle = this.angle;
+
+  width  = (this.width/this.sprites[this.currentSprite].decvehicle.width)   * 2;
+  height = (this.height/this.sprites[this.currentSprite].decvehicle.height) * 2;
+
+  ox = cameraPosition.x;
+  oy = cameraPosition.y;
+
+  sprite = document.getElementById(this.sprites[this.currentSprite].url);
+
+  draw.save();
+  draw.translate(x, y);
+  draw.rotate((Math.PI / 180) * angle);
+  draw.translate((width/-2), (height/-2));
+  draw.drawImage(sprite, 0, 0, width, height);
+  draw.restore();
+}
+
 
 function drawDynamicObject(object, objectName) {
   return;
