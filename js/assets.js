@@ -17,15 +17,19 @@ function Vehicle(asset, parent, children, connection) {
 
 function dynObjectsSetup() {
     for (objectID in dynObjects) {
-        if (dynObjects[objectID].parent != false) {
-            if (dynObjects[dynObjects[objectID].parent].parent == false) {
-                dynObjects[objectID].highestParent = dynObjects[objectID].parent;
+        var thisObject = dynObjects[objectID];
+        if (thisObject.parent != false) {
+            if (dynObjects[thisObject.parent].parent == false) {
+                thisObject.highestParent = dynObjects[objectID].parent;
             }
             else {
-                dynObjects[objectID].highestParent = dynObjects[dynObjects[objectID].parent].highestParent;
+                thisObject.highestParent = dynObjects[thisObject.parent].highestParent;
             }
         }
-        else {dynObjects[objectID].highestParent = objectID;}
+        else {
+            thisObject.highestParent = objectID;
+            thisObject.y += thisObject.height/2;
+        }
     }
 }
 

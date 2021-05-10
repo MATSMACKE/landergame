@@ -1,7 +1,7 @@
 function doHierarchySync(){
     for (object in dynObjects){
-        if (dynObjects[object].parent != false){
-            var thisObject = dynObjects[object];
+        var thisObject = dynObjects[object];
+        if (thisObject.parent != false){
             var parentObject = dynObjects[dynObjects[object].parent];
 
             var distance = parentObject.attachNodes[thisObject.connection[0]].y/2 - 
