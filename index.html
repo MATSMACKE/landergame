@@ -14,20 +14,22 @@
     <input type="range" min="1" max="5" step="0.1" value="3" id="power"><label for="power">Power</label><br>
     <input type="range" min="0" max="5" value="3" id="rollauth"><label for="rollauth">Roll authority (how easily you can turn)</label><br>
     <input type="range" min="0" max="100" value="100" id="fuel"><label for="fuel">Fuel</label><br>
-    <select name="terrain" id="terrain">
-      <option value="land">Land</option>
-      <option value="ship">Droneship</option>
-    </select><label for="terrain"> Terrain</label>
     <select name="vehicle" id="vehicle">
       <option value="f9">Falcon 9</option>
       <option value="ss">Starship</option>
       <option value="glenn">New Glenn</option>
       <option value="sh">Superheavy</option>
-    </select><label for="vehicle"> Vehicle</label>
-    <select name="launching" id="launching">
-      <option value="landing">Landing Only</option>
-      <option value="launching">Full Flight</option>
-    </select><label for="launching"> Flight Profile</label>
+    </select><label for="vehicle"> Vehicle</label><br>
+
+    <select name="from" id="from">
+      <option value="lc39a">LC39A</option>
+      <option value="lc36">LC36</option>
+    </select><label for="from"> Start Point</label><br>
+
+    <select name="to" id="to">
+      <option value="lc39a">LC39A</option>
+      <option value="lc36">LC36</option>
+    </select><label for="to"> Landing Zone</label><br>
 
     <p>CONTROLS: Up arrow, left arrow, right arrow</p>
     <button id="submit" onclick="startGame();">Start Game</button>
@@ -36,7 +38,17 @@
 
     <script>
       function startGame() {
-        window.location.href = "html/" + document.getElementById("vehicle").value + ".html?altitude=" + document.getElementById("altitude").value + "&offset=" +  document.getElementById("offset").value + "&density=" + document.getElementById("density").value + "&gravity=" + document.getElementById("gravity").value + "&wind=" + document.getElementById("wind").value + "&power=" + document.getElementById("power").value + "&rollauth=" + document.getElementById("rollauth").value + "&fuel=" + document.getElementById("fuel").value + "&terrain=" + document.getElementById("terrain").value + "&launching=" + document.getElementById("launching").value
+        window.location.href = "html/" + document.getElementById("vehicle").value + 
+        ".html?alt=" + document.getElementById("altitude").value + 
+        "&off=" +  document.getElementById("offset").value + 
+        "&den=" + document.getElementById("density").value + 
+        "&g=" + document.getElementById("gravity").value + 
+        "&wind=" + document.getElementById("wind").value + 
+        "&pow=" + document.getElementById("power").value + 
+        "&roll=" + document.getElementById("rollauth").value + 
+        "&fuel=" + document.getElementById("fuel").value + 
+        "&from=" + document.getElementById("from").value + 
+        "&to=" + document.getElementById("to").value
       }
     </script>
   </body>

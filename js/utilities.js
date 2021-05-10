@@ -13,18 +13,19 @@ function getURLData() {
   var url = new URL(window.location);
 
   //Declare Physical Constants
-  urlGravity = Number(url.searchParams.get("gravity"))/500;
+  urlGravity = Number(url.searchParams.get("g"))/500;
   urlWind = Number(url.searchParams.get("wind"))/1000;
-  urlDensity = Number(url.searchParams.get("density"));
+  urlDensity = Number(url.searchParams.get("den"));
 
-  startPositionX = Number(url.searchParams.get("offset"));
-  startPositionY = Number(url.searchParams.get("altitude"));
-  urlTerrain = url.searchParams.get("terrain");
-  urlLaunching = url.searchParams.get("launching");
+  startPositionX = Number(url.searchParams.get("off"));
+  startPositionY = Number(url.searchParams.get("alt"));
 
-  urlThrust = Number(url.searchParams.get("power"))/3;
+  urlThrust = Number(url.searchParams.get("pow"))/3;
   urlFuel = Number(url.searchParams.get("fuel"))/100;
-  urlRollAuth = Number(url.searchParams.get("rollauth"))/175;
+  urlRollAuth = Number(url.searchParams.get("roll"))/175;
+
+  startPoint = url.searchParams.get("from");
+  landingZone = url.searchParams.get("to");
 }
 
 function centerPositionX(objectWidth) {

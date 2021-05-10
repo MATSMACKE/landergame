@@ -8,8 +8,8 @@ var rollThrottle = 0;
 var gameArea = {
   canvas : document.createElement("canvas"),
   start : function() {
-      this.canvas.width = window.innerWidth - 4;
-      this.canvas.height = window.innerHeight - 6;
+      this.canvas.width = window.innerWidth;
+      this.canvas.height = window.innerHeight;
       this.canvas.unselectable = "on";
       this.canvas.oncontextmenu = "return false";
       this.context = this.canvas.getContext("2d");
