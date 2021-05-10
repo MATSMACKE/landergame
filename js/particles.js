@@ -13,7 +13,7 @@ var particleSettings = {
 
 function Particle() {
   // Establish starting positions and velocities
-  var radians = player.angle * Math.PI / 180;
+  var radians = radian(player.angle);
   if (explosion == false) {
     this.x = Math.round(((window.innerWidth)/2)-5) + (player.width/2) - engineTrigMultiplier*Math.sin(radians);
     this.y = engineTrigMultiplier*Math.cos(radians) + (player.height/2) + 30;

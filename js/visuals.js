@@ -63,7 +63,7 @@ Vehicle.prototype.draw = function() {
 
   draw.translate(x - width, y - height);
 
-  draw.rotate(degrees * Math.PI / 180);
+  draw.rotate(radian(degrees));
 
   draw.drawImage(sprite, 0, 0, width*2, height*2);
 
@@ -87,7 +87,7 @@ Vehicle.prototype.draw = function() {
 
   draw.save();
   draw.translate(x, y);
-  draw.rotate((Math.PI / 180) * angle);
+  draw.rotate(radian(angle));
   draw.translate((width/-2), (height/-2));
   draw.drawImage(sprite, 0, 0, width, height);
   draw.restore();
@@ -108,7 +108,7 @@ function drawGround(){
 
 function getCameraPosition() {
   position = {
-    x : dynObjects[activeObject].x*2 + (gameArea.canvas.width/2),
+    x : dynObjects[activeObject].x*-2 + (gameArea.canvas.width/2),
     y : dynObjects[activeObject].y*-2 + (gameArea.canvas.height/4)
   };
   return position

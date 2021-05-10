@@ -8,9 +8,9 @@ function doHierarchySync(){
             thisObject.attachNodes[thisObject.connection[1]].y/2 + 
             thisObject.height/2;
 
-            thisObject.y = parentObject.y + distance * Math.sin(radian(90-parentObject.angle));
+            thisObject.y = parentObject.y + distance * sin(90-parentObject.angle);
 
-            thisObject.x = parentObject.x + distance * Math.cos(radian(90-parentObject.angle));
+            thisObject.x = parentObject.x + distance * cos(90-parentObject.angle);
 
             thisObject.angle = parentObject.angle;
         }
@@ -52,7 +52,9 @@ Vehicle.prototype.doMechanics = function() {
 }
 
 Vehicle.prototype.calculateThrust = function (throttle) {
-    this.velocity.y += this.thrust.sealvl/((this.mass.dry + this.mass.fuel) * 50);
+    var thrust = this.thrust.sealvl/((this.mass.dry + this.mass.fuel) * 50);
+    this.velocity.y += thrust * sin(90-this.angle);
+    this.velocity.x += thrust * cos(90-this.angle);
 }
 
 Vehicle.prototype.calculateRollThrust = function(rollThrottle) {

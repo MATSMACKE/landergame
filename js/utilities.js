@@ -75,3 +75,11 @@ function lerp(value1, value2, factor) {
 function radian(degrees) {
   return degrees * Math.PI/180;
 }
+
+function sin(angle) {
+  return Math.sin(radian(angle));
+}
+
+function cos(angle) {
+  return Math.cos(radian(angle));
+}
