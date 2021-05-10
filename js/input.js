@@ -12,6 +12,9 @@ document.addEventListener('keydown', function(event) {
     rightPressed = true;
   }
   if (event.keyCode == 38) {
+    if (!flying) {
+      flying = true;
+    }
     upPressed = true;
   }
   if (event.keyCode == 82) {
@@ -45,25 +48,22 @@ document.addEventListener('keyup', function(event) {
 }, true);
 
 function getInputs() {
-  if (upPressed == true) {
-    if (objects[activeObject].fuel > 0) {
-      var power = (objects[activeObject].thrust * lerp(objects[activeObject].exhaustVelocitySea, objects[activeObject].exhaustVelocityVac, calculateDensity(objects[activeObject].body, activeObject) / 1.45))/(objects[activeObject].fuel + objects[activeObject].drymass);
-
-      objects[activeObject].velocity.y += Math.cos(objects[activeObject].angle * Math.PI / 180)*power/50;
-      objects[activeObject].velocity.x += Math.sin(objects[activeObject].angle * Math.PI / 180)*power/50;
-
-      objects[activeObject].fuel -= (objects[activeObject].thrust/lerp(objects[activeObject].exhaustVelocitySea, objects[activeObject].exhaustVelocityVac, calculateDensity(objects[activeObject].body, activeObject) / 1.45))/50;
-    }
+  if (upPressed) {
+    throttle = 1;
   }
-  if (leftPressed == true) {
-    objects[activeObject].angularVelocity -= 
-    ((objects[activeObject].aeroControl*
-    Math.abs(objects[activeObject].velocity.y)*
-    calculateDensity(objects[activeObject].body, activeObject))/10 + 
-    objects[activeObject].rcsPower)*
-    (1/objects[activeObject].drymass+objects[activeObject].fuel)/50;
+  else {
+    throttle = 0;
   }
-  if (rightPressed == true) {
-    objects[activeObject].angularVelocity += ((objects[activeObject].aeroControl*Math.abs(objects[activeObject].velocity.y)*calculateDensity(objects[activeObject].body, activeObject))/10 + objects[activeObject].rcsPower)*(objects[activeObject].drymass+objects[activeObject].fuel)/50;
+  if (rightPressed && leftPressed) {
+    rollThrottle = 0;
+  }
+  else if (rightPressed) {
+    rollThrottle = 1;
+  }
+  else if (leftPressed) {
+    rollThrottle = -1;
+  }
+  else {
+    rollThrottle = 0;
   }
 }

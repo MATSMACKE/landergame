@@ -1,6 +1,9 @@
 var paused = false;
 
-var flying = true;
+var flying = false;
+
+var throttle = 0;
+var rollThrottle = 0;
 
 var gameArea = {
   canvas : document.createElement("canvas"),
@@ -11,7 +14,6 @@ var gameArea = {
       this.canvas.oncontextmenu = "return false";
       this.context = this.canvas.getContext("2d");
       document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-      //generateCloudPositions();
       importWorldSprites();
       importPlayerSprites();
       this.interval = setInterval(update, 20);

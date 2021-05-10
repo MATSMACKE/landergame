@@ -13,30 +13,35 @@ const gravity = 9.81;
 function doPhysics() {
     for (object in dynObjects) {
         dynObjects[object].doPhysics();
-        console.log("e");
     }
 }
 
 Vehicle.prototype.doPhysics = function() {
     if (this.parent == false) {
         this.doMechanics();
-        console.log("f");
+        if (throttle > 0) {
+            this.calculateThrust(1);
+        }
+        if (rollThrottle != 0) {
+            this.calculateRollThrust();
+        }
     }
 
     else {
-        console.log("g");
         return;
     }
 };
 
 Vehicle.prototype.doMechanics = function() {
     this.velocity.x += 0;
-    this.velocity.y += -1 * gravity;
+    this.velocity.y += -0.02 * gravity;
 
-    this.x += this.velocity.x/50;
-    this.y += this.velocity.y/50;
+    this.x += 0.02 * this.velocity.x;
+    this.y += 0.02 * this.velocity.y;
 
     this.angle += this.velocity.angular;
+}
 
-    console.log(gravity);
+Vehicle.prototype.calculateThrust = function (throttle) {
+    this.velocity.y += this.thrust.sealvl/((this.mass.dry + this.mass.fuel) * 50);
 }
