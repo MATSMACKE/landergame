@@ -5,6 +5,14 @@ function Vehicle(asset, parent, children, connection) {
     this.parent = parent;
     this.children = children;
     this.connection = connection;
+    this.velocity = {
+        x : 0,
+        y : 0,
+        angular : 0
+    };
+    this.x = 0;
+    this.y = 0;
+    this.angle = 0;
 }
 
 function dynObjectsSetup() {
@@ -67,8 +75,6 @@ var assets = {
         },
         parent : false,
         currentSprite : "default",
-        x : 0,
-        y : 23.85
     },
     f9s2 : {
         sprites : {
@@ -108,8 +114,6 @@ var assets = {
         },
         parent : false,
         currentSprite : "default",
-        x : 0,
-        y : 0
     },
     dragon : {
         sprites : {
@@ -145,8 +149,6 @@ var assets = {
         },
         parent : false,
         currentSprite : "default",
-        x : 0,
-        y : 0
     },
 }
 

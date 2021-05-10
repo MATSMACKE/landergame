@@ -1,6 +1,6 @@
 var paused = false;
 
-var flying = false;
+var flying = true;
 
 var gameArea = {
   canvas : document.createElement("canvas"),
