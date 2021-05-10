@@ -71,3 +71,7 @@ function lerp(value1, value2, factor) {
     return value2;
   }
 }
+
+function radian(degrees) {
+  return degrees * Math.PI/180;
+}

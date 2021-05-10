@@ -47,6 +47,8 @@ function drawWorldObject(object, objectName) {
 }
 
 /*
+OLD VEHICLE DRAW FUNCTION!! FOR REFERENCE ONLY!!
+
 Vehicle.prototype.draw = function() {
   x = this.x*2 + cameraPosition.x;
   y = gameArea.canvas.height - (this.y*2 + cameraPosition.y);
