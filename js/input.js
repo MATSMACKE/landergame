@@ -36,13 +36,13 @@ document.addEventListener('keydown', function(event) {
 }, true);
 
 document.addEventListener('keyup', function(event) {
-  if (event.keyCode == 37) {
+  if (event.key == "ArrowLeft") {
     leftPressed = false;
   }
-  if (event.keyCode == 39) {
+  if (event.key == "ArrowRight") {
     rightPressed = false;
   }
-  if (event.keyCode == 38) {
+  if (event.key == "ArrowUp") {
     upPressed = false;
   }
 }, true);
