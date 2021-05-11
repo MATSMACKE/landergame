@@ -12,17 +12,35 @@ function drawXLocator() {
   var sx = worldObjects[startPoint].x;
   var lx = worldObjects[landingZone].x;
 
+  calculateBallisticEstimate();
+
   if (ax < sx) {
-    p("out of range left");
+    draw.fillStyle = "#656565";
+    draw.fillRect(gameArea.canvas.width - 15, gameArea.canvas.height-30, 5, 20);
+    draw.fillRect(10 + ((gameArea.canvas.width - 20)*(sx - ax)/(lx - ax)), gameArea.canvas.height-30, 5, 20);
+
+    draw.fillStyle = "white";
+    draw.fillRect(10, gameArea.canvas.height-30, 5, 20);
+  } else if (ax > lx) {
     draw.fillStyle = "#656565";
     draw.fillRect(10, gameArea.canvas.height-30, 5, 20);
-    draw.fillRect(gameArea.canvas.width - 15, gameArea.canvas.height-30, 5, 20);
-  } else if (ax > lx) {
-    p("out of range right");
-  } else if (sx <= ax && ax <= lx) {
+    draw.fillRect(10 + ((gameArea.canvas.width - 20)*((ax - sx) - (ax - lx))/(ax - sx)), gameArea.canvas.height-30, 5, 20);
+
     draw.fillStyle = "white";
-    draw.fillRect(10 + ((gameArea.canvas.width - 20)*ax/(lx-sx)), gameArea.canvas.height-30, 5, 20);
+    draw.fillRect(gameArea.canvas.width - 15, gameArea.canvas.height-30, 5, 20);
+  } else if (sx <= ax && ax <= lx) {
+    draw.fillStyle = "green";
+    draw.fillRect(10 + (gameArea.canvas.width - 20)*calculateBallisticEstimate()/(lx - sx), gameArea.canvas.height-30, 5, 20);
+    
+    draw.fillStyle = "white";
+    draw.fillRect(10 + ((gameArea.canvas.width - 20)*ax/(lx - sx)), gameArea.canvas.height-30, 5, 20);
   }
+}
+
+function calculateBallisticEstimate() {
+  var obj = dynObjects[activeObject];
+  var timeToImpact = (Math.sqrt((2 * gravity * obj.y) + (obj.velocity.y ** 2)) + obj.velocity.y)/gravity;
+  return (obj.velocity.x * timeToImpact) + obj.x;
 }
 
 var textBoxes;
@@ -33,8 +51,8 @@ function initUI() {
       name : "Altitude: ",
       bgRect : [0, 0, 225, 55],
       num : function() {
-          return Math.round(dynObjects[activeObject].y - dynObjects[activeObject].height/2);
-        },
+        return Math.round(dynObjects[activeObject].y - dynObjects[activeObject].height/2);
+      },
       type : "distance",
       x : 10,
       y : 35
@@ -43,8 +61,8 @@ function initUI() {
       name : "Downrange: ",
       bgRect : [0, 55, 225, 55],
       num : function() {
-          return Math.round(dynObjects[activeObject].x);
-        },
+        return Math.round(dynObjects[activeObject].x);
+      },
       type : "distance",
       x : 10,
       y : 90
@@ -53,8 +71,8 @@ function initUI() {
       name : "Horizontal Velocity: ",
       bgRect : [0, gameArea.canvas.height-140, 330, 55],
       num : function() {
-          return Math.round(dynObjects[activeObject].velocity.x);
-        },
+        return Math.round(dynObjects[activeObject].velocity.x);
+      },
       type : "velocity",
       x : 10,
       y : gameArea.canvas.height - 105
@@ -63,8 +81,8 @@ function initUI() {
       name : "Vertical Velocity: ",
       bgRect : [0, gameArea.canvas.height-85, 330, 55],
       num : function() {
-          return Math.round(dynObjects[activeObject].velocity.y);
-        },
+        return Math.round(dynObjects[activeObject].velocity.y);
+      },
       type : "velocity",
       x : 10,
       y : gameArea.canvas.height - 50
