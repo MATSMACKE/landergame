@@ -5,25 +5,25 @@ var upPressed = false;
 
 //Listen for KeyDown
 document.addEventListener('keydown', function(event) {
-  if (event.keyCode == 37) {
+  if (event.key == "ArrowLeft") {
     leftPressed = true;
   }
-  if (event.keyCode == 39) {
+  if (event.key == "ArrowRight") {
     rightPressed = true;
   }
-  if (event.keyCode == 38) {
+  if (event.key == "ArrowUp") {
     if (!flying) {
       flying = true;
     }
     upPressed = true;
   }
-  if (event.keyCode == 82) {
+  if (event.key == 'r' || event.code == "Enter") {
     location.reload();
   }
-  if (event.keyCode == 66) {
+  if (event.key == 'b') {
     history.back();
   }
-  if (event.keyCode == 80) {
+  if (event.key == 'p' || event.code == "ShiftRight") {
     if (paused == true) {
       gameArea.interval = setInterval(update, 20);
       paused = false;
