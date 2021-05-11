@@ -8,25 +8,13 @@ function calculateContactPoint() {
 
 var explosion;
 
-function getURLData() {
-  //Get query string
-  var url = new URL(window.location);
+var startPoint;
+var landingZone;
 
-  //Declare Physical Constants
-  urlGravity = Number(url.searchParams.get("g"))/500;
-  urlWind = Number(url.searchParams.get("wind"))/1000;
-  urlDensity = Number(url.searchParams.get("den"));
+var url = new URL(window.location);
 
-  startPositionX = Number(url.searchParams.get("off"));
-  startPositionY = Number(url.searchParams.get("alt"));
-
-  urlThrust = Number(url.searchParams.get("pow"))/3;
-  urlFuel = Number(url.searchParams.get("fuel"))/100;
-  urlRollAuth = Number(url.searchParams.get("roll"))/175;
-
-  startPoint = url.searchParams.get("from");
-  landingZone = url.searchParams.get("to");
-}
+startPoint = url.searchParams.get("start");
+landingZone = url.searchParams.get("land");
 
 function centerPositionX(objectWidth) {
   return Math.round(((window.innerWidth)/2)-(objectWidth/2));

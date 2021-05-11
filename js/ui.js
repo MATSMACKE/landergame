@@ -7,6 +7,16 @@ function drawUI() {
 function drawXLocator() {
   draw.fillStyle = "black";
   draw.fillRect(10, gameArea.canvas.height - 20, gameArea.canvas.width - 20, 10);
+
+  var ax = dynObjects[activeObject].x;
+  var sx = worldObjects[startPoint].x;
+  var lx = worldObjects[landingZone].x;
+
+  if (sx <= ax && ax <= lx) {
+    draw.fillStyle = "white";
+    draw.fillRect(10 + ((gameArea.canvas.width - 20)*ax/(lx-sx)), gameArea.canvas.height-30, 5, 20);
+    p("drawing");
+  }
 }
 
 var textBoxes;
@@ -15,7 +25,7 @@ function initUI() {
   textBoxes = {
     alt : {
       name : "Altitude: ",
-      bgRect : [0, 0, 215, 55],
+      bgRect : [0, 0, 225, 55],
       num : function() {
           return Math.round(dynObjects[activeObject].y - dynObjects[activeObject].height/2);
         },
@@ -25,7 +35,7 @@ function initUI() {
     },
     downrange : {
       name : "Downrange: ",
-      bgRect : [0, 55, 215, 55],
+      bgRect : [0, 55, 225, 55],
       num : function() {
           return Math.round(dynObjects[activeObject].x);
         },
@@ -35,7 +45,7 @@ function initUI() {
     },
     velx : {
       name : "Horizontal Velocity: ",
-      bgRect : [0, gameArea.canvas.height-140, 320, 55],
+      bgRect : [0, gameArea.canvas.height-140, 330, 55],
       num : function() {
           return Math.round(dynObjects[activeObject].velocity.x);
         },
@@ -45,7 +55,7 @@ function initUI() {
     },
     vely : {
       name : "Vertical Velocity: ",
-      bgRect : [0, gameArea.canvas.height-85, 320, 55],
+      bgRect : [0, gameArea.canvas.height-85, 330, 55],
       num : function() {
           return Math.round(dynObjects[activeObject].velocity.y);
         },
@@ -72,9 +82,9 @@ function drawText() {
     draw.font = "24px Custom";
 
     if (box.type == "distance") {
-      if (num < 1000) {
+      if (Math.abs(num) < 1000) {
         var unit = "m";
-      } else if (num < 100000) {
+      } else if (Math.abs(num) < 100000) {
         num = (num*0.001).toFixed(1);
         var unit = "km"
       } else {
@@ -82,9 +92,9 @@ function drawText() {
         var unit = "km";
       }
     } else if (box.type == "velocity") {
-      if (num < 1000) {
+      if (Math.abs(num) < 1000) {
         var unit = "m/s";
-      } else if (num < 100000) {
+      } else if (Math.abs(num) < 100000) {
         num = (num*0.001).toFixed(1);
         var unit = "km/s"
       } else {

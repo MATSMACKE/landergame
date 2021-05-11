@@ -14,7 +14,7 @@ var worldObjects = {
     y : 0,
     width : 480,
     height: 150,
-    center : 924,
+    center : 235,
     angle: 0
   }/*,
   bocaChica : {
