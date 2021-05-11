@@ -35,7 +35,7 @@ function initUI() {
     },
     velx : {
       name : "Horizontal Velocity: ",
-      bgRect : [0, gameArea.canvas.height-140, 310, 55],
+      bgRect : [0, gameArea.canvas.height-140, 320, 55],
       num : function() {
           return Math.round(dynObjects[activeObject].velocity.x);
         },
@@ -45,7 +45,7 @@ function initUI() {
     },
     vely : {
       name : "Vertical Velocity: ",
-      bgRect : [0, gameArea.canvas.height-85, 310, 55],
+      bgRect : [0, gameArea.canvas.height-85, 320, 55],
       num : function() {
           return Math.round(dynObjects[activeObject].velocity.y);
         },
