@@ -12,10 +12,16 @@ function drawXLocator() {
   var sx = worldObjects[startPoint].x;
   var lx = worldObjects[landingZone].x;
 
-  if (sx <= ax && ax <= lx) {
+  if (ax < sx) {
+    p("out of range left");
+    draw.fillStyle = "#656565";
+    draw.fillRect(10, gameArea.canvas.height-30, 5, 20);
+    draw.fillRect(gameArea.canvas.width - 15, gameArea.canvas.height-30, 5, 20);
+  } else if (ax > lx) {
+    p("out of range right");
+  } else if (sx <= ax && ax <= lx) {
     draw.fillStyle = "white";
     draw.fillRect(10 + ((gameArea.canvas.width - 20)*ax/(lx-sx)), gameArea.canvas.height-30, 5, 20);
-    p("drawing");
   }
 }
 
