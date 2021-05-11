@@ -16,6 +16,7 @@ var gameArea = {
       document.body.insertBefore(this.canvas, document.body.childNodes[0]);
       importWorldSprites();
       importPlayerSprites();
+      initUI();
       this.interval = setInterval(update, 20);
   },
   clear : function() {

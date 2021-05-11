@@ -84,3 +84,7 @@ function sin(angle) {
 function cos(angle) {
   return Math.cos(radian(angle));
 }
+
+function p(value) {
+  console.log(value);
+}
