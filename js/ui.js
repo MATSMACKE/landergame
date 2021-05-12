@@ -128,6 +128,4 @@ function drawText() {
     }
     draw.fillText(box.name + num + unit, box.x, box.y);
   }
-
-  
 }
