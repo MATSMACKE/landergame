@@ -42,8 +42,8 @@ Vehicle.prototype.doPhysics = function() {
 };
 
 Vehicle.prototype.doMechanics = function() {
-    this.velocity.x += 0;
-    this.velocity.y += -0.02 * gravity;
+    this.velocity.x += 0.02*(-1*calculateDrag(1, this.velocity.x, 0.0001, 3.7, 47.7, this.angle, this.mass.dry + this.mass.fuel));
+    this.velocity.y += 0.02*(-1*calculateDrag(1, this.velocity.x, 0.0001, 47.7, 3.7, this.angle, this.mass.dry + this.mass.fuel) - gravity);
 
     this.x += 0.02 * this.velocity.x;
     this.y += 0.02 * this.velocity.y;
@@ -59,4 +59,13 @@ Vehicle.prototype.calculateThrust = function (throttle) {
 
 Vehicle.prototype.calculateRollThrust = function(rollThrottle) {
     this.velocity.angular += rollThrottle*this.rollFactor/50;
+}
+
+function calculateDrag(density, vel, coefficient, height, width, angle, mass) {
+    var area = 8;
+    return (coefficient *((density * vel*vel)/2) * area);
+}
+
+Vehicle.prototype.calculateDensity = function() {
+    this.density = 1;
 }
