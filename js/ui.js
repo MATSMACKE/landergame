@@ -21,6 +21,11 @@ function drawXLocator() {
 
     draw.fillStyle = "white";
     draw.fillRect(10, gameArea.canvas.height-30, 5, 20);
+
+    if (dynObjects[activeObject].velocity.x > 0) {
+      draw.fillStyle = "green";
+      draw.fillRect(10 + (gameArea.canvas.width - 20)*(calculateBallisticEstimate() - ax)/(lx - ax), gameArea.canvas.height-30, 5, 20);
+    }
   } else if (ax > lx) {
     draw.fillStyle = "#656565";
     draw.fillRect(10, gameArea.canvas.height-30, 5, 20);
@@ -28,6 +33,11 @@ function drawXLocator() {
 
     draw.fillStyle = "white";
     draw.fillRect(gameArea.canvas.width - 15, gameArea.canvas.height-30, 5, 20);
+
+    if (dynObjects[activeObject].velocity.x < 0) {
+      draw.fillStyle = "green";
+      draw.fillRect(10 + (gameArea.canvas.width - 20)*(calculateBallisticEstimate() - lx)/(ax - lx), gameArea.canvas.height-30, 5, 20);
+    }
   } else if (sx <= ax && ax <= lx) {
     draw.fillStyle = "green";
     draw.fillRect(10 + (gameArea.canvas.width - 20)*calculateBallisticEstimate()/(lx - sx), gameArea.canvas.height-30, 5, 20);
