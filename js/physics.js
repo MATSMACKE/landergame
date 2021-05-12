@@ -42,8 +42,8 @@ Vehicle.prototype.doPhysics = function() {
 };
 
 Vehicle.prototype.doMechanics = function() {
-    this.velocity.x += 0.02*(-1*calculateDrag(1, this.velocity.x, 0.0001, 3.7, 47.7, this.angle, this.mass.dry + this.mass.fuel));
-    this.velocity.y += 0.02*(-1*calculateDrag(1, this.velocity.x, 0.0001, 47.7, 3.7, this.angle, this.mass.dry + this.mass.fuel) - gravity);
+    this.velocity.x += 0.02*(-0*calculateDrag(1, this.velocity.x, 0.0001, 3.7, 47.7, this.angle, this.mass.dry + this.mass.fuel));
+    this.velocity.y += 0.02*(-0*calculateDrag(1, this.velocity.x, 0.0001, 47.7, 3.7, this.angle, this.mass.dry + this.mass.fuel) - gravity);
 
     this.x += 0.02 * this.velocity.x;
     this.y += 0.02 * this.velocity.y;
