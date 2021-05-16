@@ -1,8 +1,8 @@
 "use strict";
 
-var particleIndex = 0;
-var particles = {};
-var particleSettings = {
+let particleIndex = 0;
+let particles = {};
+let particleSettings = {
   density: 20,
   particleSize: 3,
   startingX: 0,
@@ -13,7 +13,7 @@ var particleSettings = {
 
 function Particle() {
   // Establish starting positions and velocities
-  var radians = radian(player.angle);
+  let radians = radian(player.angle);
   if (explosion == false) {
     this.x = Math.round(((window.innerWidth)/2)-5) + (player.width/2) - engineTrigMultiplier*Math.sin(radians);
     this.y = engineTrigMultiplier*Math.cos(radians) + (player.height/2) + 30;
@@ -63,7 +63,7 @@ Particle.prototype.draw = function() {
   }
 
   // Create the shapes
-  var draw = gameArea.context;
+  let draw = gameArea.context;
   draw.beginPath();
   if (this.explosion == true && this.explosion == true) {
     draw.fillStyle = RGBToHex(255, this.color, 0);
@@ -89,7 +89,7 @@ function drawParticles() {
     new Particle();
   }
 
-  for (var i in particles) {
+  for (let i in particles) {
     particles[i].draw();
   }
 };

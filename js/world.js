@@ -1,6 +1,6 @@
 "use strict";
 
-var worldObjects = {
+let worldObjects = {
   lc39a : {
     sprite : "lc39a.png",
     x : 0,
@@ -35,7 +35,7 @@ var worldObjects = {
   }*/
 };
 
-var worldTerrain = {
+let worldTerrain = {
   ocean : [
     [-10000000, -4272000],
     [-1836000, -210000],

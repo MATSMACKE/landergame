@@ -116,4 +116,4 @@ function getCameraPosition() {
   return position
 }
 
-var cameraPosition;
+let cameraPosition;

@@ -1,13 +1,13 @@
 "use strict";
 
-var paused = false;
+let paused = false;
 
-var flying = false;
+let flying = false;
 
-var throttle = 0;
-var rollThrottle = 0;
+let throttle = 0;
+let rollThrottle = 0;
 
-var gameArea = {
+let gameArea = {
   canvas : document.createElement("canvas"),
   start : function() {
       this.canvas.width = window.innerWidth;
@@ -37,4 +37,4 @@ function update() {
   drawUI();
 }
 
-var draw = gameArea.canvas.getContext("2d");
+let draw = gameArea.canvas.getContext("2d");

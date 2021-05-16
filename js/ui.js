@@ -42,8 +42,8 @@ function drawXLocator() {
 }
 
 function calculateBallisticEstimate() {
-  var obj = dynObjects[activeObject];
-  var timeToImpact = (Math.sqrt((2 * gravity * obj.y) + (obj.velocity.y ** 2)) + obj.velocity.y)/gravity;
+  let obj = dynObjects[activeObject];
+  let timeToImpact = (Math.sqrt((2 * gravity * obj.y) + (obj.velocity.y ** 2)) + obj.velocity.y)/gravity;
   return (obj.velocity.x * timeToImpact) + obj.x;
 }
 
@@ -52,7 +52,7 @@ function drawXLocation(color, value, scale) {
   draw.fillRect(10 + (gameArea.canvas.width - 20)*value/scale, gameArea.canvas.height-30, 5, 20);
 }
 
-var textBoxes;
+let textBoxes;
 
 function initUI() {
   textBoxes = {
@@ -114,25 +114,27 @@ function drawText() {
     draw.globalAlpha = 1;
     draw.font = "16px Custom";
 
+    let unit;
+
     if (box.type == "distance") {
       if (Math.abs(num) < 1000) {
-        var unit = "m";
+        unit = "m";
       } else if (Math.abs(num) < 10000) {
         num = (num*0.001).toFixed(1);
-        var unit = "km"
+        unit = "km"
       } else {
         num = Math.round(num*0.001)
-        var unit = "km";
+        unit = "km";
       }
     } else if (box.type == "velocity") {
       if (Math.abs(num) < 1000) {
-        var unit = "m/s";
+        unit = "m/s";
       } else if (Math.abs(num) < 10000) {
         num = (num*0.001).toFixed(1);
-        var unit = "km/s"
+        unit = "km/s"
       } else {
         num = Math.round(num*0.001)
-        var unit = "km/s";
+        unit = "km/s";
       }
     }
     draw.fillText(box.name + num + unit, box.x, box.y);

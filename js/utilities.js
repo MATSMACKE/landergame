@@ -8,12 +8,12 @@ function calculateContactPoint() {
 
 }
 
-var explosion;
+let explosion;
 
-var startPoint;
-var landingZone;
+let startPoint;
+let landingZone;
 
-var url = new URL(window.location);
+let url = new URL(window.location);
 
 startPoint = url.searchParams.get("start");
 landingZone = url.searchParams.get("land");
@@ -32,8 +32,8 @@ function colorFade(c1, c2, value){
 }
 
 function bellCurveRandom(){
-    var r = 0;
-    for(var i = 3; i > 0; i --){
+    let r = 0;
+    for(let i = 3; i > 0; i --){
         r += Math.random();
     }
     return r / 3;

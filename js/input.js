@@ -1,9 +1,9 @@
 "use strict";
 
-//Define input Variables
-var rightPressed = false;
-var leftPressed = false;
-var upPressed = false;
+//Define input letiables
+let rightPressed = false;
+let leftPressed = false;
+let upPressed = false;
 
 //Listen for KeyDown
 document.addEventListener('keydown', function(event) {

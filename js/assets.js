@@ -37,7 +37,7 @@ function dynObjectsSetup() {
     }
 }
 
-var assets = {
+let assets = {
     f9s1 : {
         sprites : {
             default : {
@@ -163,7 +163,7 @@ var assets = {
     },
 }
 
-var gameColors = {
+let gameColors = {
     ground : "#4f941b",
     ocean  : "#123263"
 }

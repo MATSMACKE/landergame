@@ -54,7 +54,7 @@ Vehicle.prototype.doMechanics = function() {
 }
 
 Vehicle.prototype.calculateThrust = function (throttle) {
-    var thrust = this.thrust.sealvl/((this.mass.dry + this.mass.fuel) * 50);
+    let thrust = this.thrust.sealvl/((this.mass.dry + this.mass.fuel) * 50);
     this.velocity.y += thrust * sin(90-this.angle);
     this.velocity.x += thrust * cos(90-this.angle);
 }
@@ -64,7 +64,7 @@ Vehicle.prototype.calculateRollThrust = function(rollThrottle) {
 }
 
 function calculateDrag(density, vel, coefficient, height, width, angle, mass) {
-    var area = 8;
+    let area = 8;
     return (coefficient *((density * vel*vel)/2) * area);
 }
 

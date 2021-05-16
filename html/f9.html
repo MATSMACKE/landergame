@@ -18,18 +18,20 @@
     <script src="../js/ui.js"></script>
 
     <script>
-      var dynObjects = {
+      "use strict";
+
+      let dynObjects = {
         f9s1: new Vehicle("f9s1", false, ["f9s2"], []),
         f9s2: new Vehicle("f9s2", "f9s1", ["dragon"], ["top", "bottom"]),
         dragon: new Vehicle("dragon", "f9s2", false, ["top", "bottom"])
       };
 
-      var visualLayers = [
+      let visualLayers = [
         ["f9s2", "dragon"],
         ["f9s1"]
       ];
       
-      var physicsLayers = [
+      let physicsLayers = [
         ["f9s1"],
         ["f9s2"],
         ["dragon"]
@@ -37,7 +39,7 @@
 
       dynObjectsSetup();
 
-      var activeObject = "f9s1";
+      let activeObject = "f9s1";
 
       gameArea.start();
     </script>
