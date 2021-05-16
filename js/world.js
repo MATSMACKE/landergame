@@ -1,3 +1,5 @@
+"use strict";
+
 var worldObjects = {
   lc39a : {
     sprite : "lc39a.png",

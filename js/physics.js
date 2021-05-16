@@ -1,10 +1,12 @@
-function doHierarchySync(){
-    for (object in dynObjects){
-        var thisObject = dynObjects[object];
-        if (thisObject.parent != false){
-            var parentObject = dynObjects[dynObjects[object].parent];
+"use strict";
 
-            var distance = parentObject.attachNodes[thisObject.connection[0]].y/2 - 
+function doHierarchySync(){
+    for (let object in dynObjects){
+        let thisObject = dynObjects[object];
+        if (thisObject.parent != false){
+            let parentObject = dynObjects[dynObjects[object].parent];
+
+            let distance = parentObject.attachNodes[thisObject.connection[0]].y/2 - 
             thisObject.attachNodes[thisObject.connection[1]].y/2 + 
             thisObject.height/2;
 
@@ -20,7 +22,7 @@ function doHierarchySync(){
 const gravity = 9.81;
 
 function doPhysics() {
-    for (object in dynObjects) {
+    for (let object in dynObjects) {
         dynObjects[object].doPhysics();
     }
 }

@@ -1,3 +1,5 @@
+"use strict";
+
 function drawUI() {
   drawXLocator();
   drawText();
@@ -8,9 +10,9 @@ function drawXLocator() {
   draw.fillStyle = "black";
   draw.fillRect(10, gameArea.canvas.height - 20, gameArea.canvas.width - 20, 10);
 
-  var ax = dynObjects[activeObject].x;
-  var sx = worldObjects[startPoint].x;
-  var lx = worldObjects[landingZone].x;
+  let ax = dynObjects[activeObject].x;
+  let sx = worldObjects[startPoint].x;
+  let lx = worldObjects[landingZone].x;
 
   calculateBallisticEstimate();
 
@@ -98,12 +100,12 @@ function initUI() {
 }
 
 function drawText() {
-  for (textBox in textBoxes) {
-    var box = textBoxes[textBox];
+  for (let textBox in textBoxes) {
+    let box = textBoxes[textBox];
 
-    var bgRect = box.bgRect;
+    let bgRect = box.bgRect;
 
-    var num = box.num();
+    let num = box.num();
 
     draw.fillStyle = "black";
     draw.globalAlpha = 0.3;

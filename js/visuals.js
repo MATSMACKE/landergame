@@ -1,14 +1,16 @@
+"use strict";
+
 function importSprites(object, type, objectName) {
   if (type == "dynamic") {
-    for (spriteName in object.sprites) {
-      var sprite = document.createElement("img");
+    for (let spriteName in object.sprites) {
+      let sprite = document.createElement("img");
       sprite.setAttribute("id", object.sprites[spriteName].url);
       sprite.setAttribute("src", "../sprites/" + object.sprites[spriteName].url);
       document.body.append(sprite);
     }
   }
   if (type == "world") {
-    var sprite = document.createElement("img");
+    let sprite = document.createElement("img");
     sprite.setAttribute("id", objectName);
     sprite.setAttribute("src", "../sprites/" + object.sprite);
     document.body.append(sprite);
@@ -16,14 +18,14 @@ function importSprites(object, type, objectName) {
 }
 
 function importPlayerSprites() {
-  for (object in dynObjects) {
-    currentObject = dynObjects[object];
+  for (let object in dynObjects) {
+    let currentObject = dynObjects[object];
     importSprites(currentObject, "dynamic", object);
   }
 }
 
 function importWorldSprites() {
-  for (object in worldObjects) {
+  for (let object in worldObjects) {
     importSprites(worldObjects[object], "world", object);
   }
 }
@@ -31,11 +33,11 @@ function importWorldSprites() {
 function drawScene() {
   cameraPosition = getCameraPosition();
   drawGround();
-  for (objectID in worldObjects) {
+  for (let objectID in worldObjects) {
     drawWorldObject(worldObjects[objectID], objectID);
   }
-  for (layer in visualLayers) {
-    for (objectID in visualLayers[layer]) {
+  for (let layer in visualLayers) {
+    for (let objectID in visualLayers[layer]) {
       dynObjects[visualLayers[layer][objectID]].draw();
     }
   }
@@ -72,18 +74,18 @@ Vehicle.prototype.draw = function() {
 */
 
 Vehicle.prototype.draw = function() {
-  x = this.x*2 + cameraPosition.x;
-  y = gameArea.canvas.height - (this.y*2 + cameraPosition.y);
+  let x = this.x*2 + cameraPosition.x;
+  let y = gameArea.canvas.height - (this.y*2 + cameraPosition.y);
 
-  angle = this.angle;
+  let angle = this.angle;
 
-  width  = (this.width/this.sprites[this.currentSprite].decvehicle.width)   * 2;
-  height = (this.height/this.sprites[this.currentSprite].decvehicle.height) * 2;
+  let width  = (this.width/this.sprites[this.currentSprite].decvehicle.width)   * 2;
+  let height = (this.height/this.sprites[this.currentSprite].decvehicle.height) * 2;
 
-  ox = cameraPosition.x;
-  oy = cameraPosition.y;
+  let ox = cameraPosition.x;
+  let oy = cameraPosition.y;
 
-  sprite = document.getElementById(this.sprites[this.currentSprite].url);
+  let sprite = document.getElementById(this.sprites[this.currentSprite].url);
 
   draw.save();
   draw.translate(x, y);
@@ -107,7 +109,7 @@ function drawGround(){
 }
 
 function getCameraPosition() {
-  position = {
+  let position = {
     x : dynObjects[activeObject].x*-2 + (gameArea.canvas.width/2),
     y : dynObjects[activeObject].y*-2 + (gameArea.canvas.height/4)
   };

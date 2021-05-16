@@ -1,3 +1,5 @@
+"use strict";
+
 //Define input Variables
 var rightPressed = false;
 var leftPressed = false;

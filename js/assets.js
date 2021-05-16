@@ -1,5 +1,7 @@
+"use strict";
+
 function Vehicle(asset, parent, children, connection) {
-    for (propertyName in assets[asset]) {
+    for (let propertyName in assets[asset]) {
         this[propertyName] = assets[asset][propertyName];
     }
     this.parent = parent;
@@ -16,8 +18,8 @@ function Vehicle(asset, parent, children, connection) {
 }
 
 function dynObjectsSetup() {
-    for (objectID in dynObjects) {
-        var thisObject = dynObjects[objectID];
+    for (let objectID in dynObjects) {
+        let thisObject = dynObjects[objectID];
         if (thisObject.parent != false) {
             if (dynObjects[thisObject.parent].parent == false) {
                 thisObject.highestParent = dynObjects[objectID].parent;

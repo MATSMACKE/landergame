@@ -1,3 +1,5 @@
+"use strict";
+
 var paused = false;
 
 var flying = false;
