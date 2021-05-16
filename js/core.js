@@ -17,7 +17,7 @@ let gameArea = {
       this.context = this.canvas.getContext("2d");
       document.body.insertBefore(this.canvas, document.body.childNodes[0]);
       importWorldSprites();
-      importPlayerSprites();
+      importDynamicSprites();
       initUI();
       this.interval = setInterval(update, 20);
   },

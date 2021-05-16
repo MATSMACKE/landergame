@@ -43,7 +43,7 @@ function drawXLocator() {
 
 function calculateBallisticEstimate() {
   let obj = dynObjects[activeObject];
-  let timeToImpact = (Math.sqrt((2 * gravity * obj.y) + (obj.velocity.y ** 2)) + obj.velocity.y)/gravity;
+  let timeToImpact = (Math.sqrt((2 * GRAVITY * obj.y) + (obj.velocity.y ** 2)) + obj.velocity.y)/GRAVITY;
   return (obj.velocity.x * timeToImpact) + obj.x;
 }
 

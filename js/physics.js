@@ -19,7 +19,7 @@ function doHierarchySync(){
     }
 }
 
-const gravity = 9.81;
+const GRAVITY = 9.81;
 
 function doPhysics() {
     for (let object in dynObjects) {
@@ -30,10 +30,10 @@ function doPhysics() {
 Vehicle.prototype.doPhysics = function() {
     if (this.parent == false) {
         this.doMechanics();
-        if (throttle > 0) {
+        if (throttle) {
             this.calculateThrust(throttle);
         }
-        if (rollThrottle != 0) {
+        if (rollThrottle) {
             this.calculateRollThrust(rollThrottle);
         }
     }
@@ -45,7 +45,7 @@ Vehicle.prototype.doPhysics = function() {
 
 Vehicle.prototype.doMechanics = function() {
     this.velocity.x += 0.02*(-0*calculateDrag(1, this.velocity.x, 0.0001, 3.7, 47.7, this.angle, this.mass.dry + this.mass.fuel));
-    this.velocity.y += 0.02*(-0*calculateDrag(1, this.velocity.x, 0.0001, 47.7, 3.7, this.angle, this.mass.dry + this.mass.fuel) - gravity);
+    this.velocity.y += 0.02*(-0*calculateDrag(1, this.velocity.x, 0.0001, 47.7, 3.7, this.angle, this.mass.dry + this.mass.fuel) - GRAVITY);
 
     this.x += 0.02 * this.velocity.x;
     this.y += 0.02 * this.velocity.y;

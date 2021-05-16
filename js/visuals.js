@@ -17,7 +17,7 @@ function importSprites(object, type, objectName) {
   }
 }
 
-function importPlayerSprites() {
+function importDynamicSprites() {
   for (let object in dynObjects) {
     let currentObject = dynObjects[object];
     importSprites(currentObject, "dynamic", object);
@@ -43,36 +43,12 @@ function drawScene() {
   }
 }
 
-//Render worldObjects
+//Render a worldObject
 function drawWorldObject(object, objectName) {
   draw.drawImage(document.getElementById(objectName), (object.x-object.center)*2 + cameraPosition.x, gameArea.canvas.height - (object.y*2 + (object.height*2) + cameraPosition.y), object.width*2, object.height*2);
 }
 
-/*
-OLD VEHICLE DRAW FUNCTION!! FOR REFERENCE ONLY!!
-
-Vehicle.prototype.draw = function() {
-  x = this.x*2 + cameraPosition.x;
-  y = gameArea.canvas.height - (this.y*2 + cameraPosition.y);
-  degrees = this.angle;
-  sprite = document.getElementById(this.sprites[this.currentSprite].url);
-  width = this.width/this.sprites[this.currentSprite].decvehicle.width;
-  height = this.height/this.sprites[this.currentSprite].decvehicle.height;
-
-  draw.save();
-
-  draw.beginPath();
-
-  draw.translate(x - width, y - height);
-
-  draw.rotate(radian(degrees));
-
-  draw.drawImage(sprite, 0, 0, width*2, height*2);
-
-  draw.restore();
-};
-*/
-
+//Render a vehicle
 Vehicle.prototype.draw = function() {
   let x = this.x*2 + cameraPosition.x;
   let y = gameArea.canvas.height - (this.y*2 + cameraPosition.y);
@@ -81,9 +57,6 @@ Vehicle.prototype.draw = function() {
 
   let width  = (this.width/this.sprites[this.currentSprite].decvehicle.width)   * 2;
   let height = (this.height/this.sprites[this.currentSprite].decvehicle.height) * 2;
-
-  let ox = cameraPosition.x;
-  let oy = cameraPosition.y;
 
   let sprite = document.getElementById(this.sprites[this.currentSprite].url);
 
@@ -95,11 +68,7 @@ Vehicle.prototype.draw = function() {
   draw.restore();
 }
 
-
-function drawDynamicObject(object, objectName) {
-  return;
-}
-
+//Draw a green rectangle as the ground
 function drawGround(){
   draw.beginPath();
   draw.rect(0, gameArea.canvas.height - cameraPosition.y, gameArea.canvas.width, gameArea.canvas.height);
@@ -108,6 +77,8 @@ function drawGround(){
   draw.fill();
 }
 
+//Calculates how all objects should be offset in order for the 
+//active object to render in the center of the screen
 function getCameraPosition() {
   let position = {
     x : dynObjects[activeObject].x*-2 + (gameArea.canvas.width/2),
