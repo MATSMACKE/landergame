@@ -82,7 +82,7 @@ function drawGround(){
 function getCameraPosition() {
   let position = {
     x : dynObjects[activeObject].x*-2 + (gameArea.canvas.width/2),
-    y : dynObjects[activeObject].y*-2 + (gameArea.canvas.height/4)
+    y : dynObjects[activeObject].y*-2 + (3.2*gameArea.canvas.height/4)
   };
   return position
 }

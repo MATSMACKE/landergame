@@ -58,23 +58,19 @@ function initUI() {
   textBoxes = {
     alt : {
       name : "Altitude: ",
-      bgRect : [0, 0, 150, "left", "top"],
+      bgRect : [0, 0, 160, "left", "top"],
       num : function() {
         return Math.round(dynObjects[activeObject].y - dynObjects[activeObject].height/2);
       },
-      type : "distance",
-      x : 10,
-      y : 27
+      type : "distance"
     },
     downrange : {
       name : "Downrange: ",
-      bgRect : [0, 1, 150, "left", "top"],
+      bgRect : [0, 1, 160, "left", "top"],
       num : function() {
         return Math.round(dynObjects[activeObject].x);
       },
-      type : "distance",
-      x : 10,
-      y : 67
+      type : "distance"
     },
     velx : {
       name : "Horizontal Velocity: ",
@@ -82,9 +78,7 @@ function initUI() {
       num : function() {
         return Math.round(dynObjects[activeObject].velocity.x);
       },
-      type : "velocity",
-      x : 10,
-      y : gameArea.canvas.height - 84
+      type : "velocity"
     },
     vely : {
       name : "Vertical Velocity: ",
@@ -92,9 +86,26 @@ function initUI() {
       num : function() {
         return Math.round(dynObjects[activeObject].velocity.y);
       },
-      type : "velocity",
-      x : 10,
-      y : gameArea.canvas.height - 44
+      type : "velocity"
+    },
+    apo : {
+      name : "Apoapsis: ",
+      bgRect : [0, 0, 160, "right", "top"],
+      num : function() {
+        let obj = dynObjects[activeObject];
+        return Math.round(obj.y + ((obj.velocity.y ** 2)/(2 * envStat.GRAVITY)) - (obj.height/2));
+      },
+      type : "distance"
+    },
+    impact : {
+      name : "Impact: ",
+      bgRect : [0, 1, 160, "right", "top"],
+      num : function() {
+        let obj = dynObjects[activeObject];
+        let timeToImpact = (Math.sqrt((2 * envStat.GRAVITY * obj.y) + (obj.velocity.y ** 2)) + obj.velocity.y)/envStat.GRAVITY;
+        return Math.round((obj.velocity.x * timeToImpact) + obj.x);
+      },
+      type : "distance"
     }
   }
 }
@@ -135,6 +146,12 @@ function drawText() {
 
     let unit;
 
+    let textDims = {
+      x : (bgRect[3] == "left") ? textParams.textX : textParams.textX+(gameArea.canvas.width-bgRect[2]),
+      y : (bgRect[4] == "top")  ? textParams.textY + (bgRect[1] * textParams.rectHeight) : 
+                                  textParams.textY + gameArea.canvas.height - (((bgRect[1] + 1) * textParams.rectHeight) + textParams.bottomOffset)
+    }
+
     if (box.type == "distance") {
       if (Math.abs(num) < 1000) {
         unit = "m";
@@ -156,6 +173,6 @@ function drawText() {
         unit = "km/s";
       }
     }
-    draw.fillText(box.name + num + unit, box.x, box.y);
+    draw.fillText(box.name + num + unit, textDims.x, textDims.y);
   }
 }
