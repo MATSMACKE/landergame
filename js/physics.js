@@ -32,11 +32,13 @@ function doPhysics() {
 Vehicle.prototype.doPhysics = function() {
     if (this.parent === null) {
         this.doMechanics();
-        if (inputs.throttle) {
-            this.calcThrust(inputs.throttle);
-        }
-        if (inputs.rollThrottle) {
-            this.calcRollThrust(Math.abs(inputs.rollThrottle));
+        if (this.id == activeObject) {
+            if (inputs.throttle) {
+                this.calcThrust(inputs.throttle);
+            }
+            if (inputs.rollThrottle) {
+                this.calcRollThrust(Math.abs(inputs.rollThrottle));
+            }
         }
     }
 
@@ -56,7 +58,7 @@ Vehicle.prototype.doMechanics = function() {
 }
 
 Vehicle.prototype.calcThrust = function (throttle) {
-    let thrust = throttle * this.thrust.sealvl/((this.mass.dry + this.mass.fuel) * 50);
+    let thrust = throttle * this.thrust.sl/((this.mass.dry + this.mass.fuel) * 50);
     this.velocity.y += thrust * sin(90-this.angle);
     this.velocity.x += thrust * cos(90-this.angle);
 }

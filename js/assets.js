@@ -41,12 +41,10 @@ let cstage = 0;
 
 function stage() {
     let stageObj = dynObjects[stages[cstage].object];
-    //p(stageObj);
     if (stages[cstage].action == "separate") {
         stageObj.separate();
     }
     cstage++;
-    return
 }
 
 Vehicle.prototype.separate = function() {
@@ -58,8 +56,12 @@ Vehicle.prototype.separate = function() {
         }
     }
     delete dynObjects[this.parent].children[thisChild];
+
     this.velocity = Object.create(dynObjects[this.parent].velocity);
+    this.angle = dynObjects[this.parent].angle;
+
     this.parent = null;
+
 }
 
 let assets = {
@@ -94,7 +96,7 @@ let assets = {
         },
         fuelConsumption : 2.443,
         thrust : {
-            sealvl : 7607,
+            sl : 7607,
             vac : 8227,
         },
         engineNumber : 9,
@@ -131,7 +133,7 @@ let assets = {
         },
         fuelConsumption : 0.233,
         thrust : {
-            sealvl : 0,
+            sl : 0,
             vac : 1,
         },
         engineNumber : 1,
@@ -172,7 +174,7 @@ let assets = {
         },
         fuelConsumption : 0.233,
         thrust : {
-            sealvl : 0,
+            sl : 0,
             vac : 1,
         },
         engineNumber : 1,
