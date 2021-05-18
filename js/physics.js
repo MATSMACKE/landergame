@@ -1,9 +1,9 @@
 "use strict";
 
-function doHierarchySync(){
+function syncHierarchy(){
     for (let object in dynObjects){
         let thisObject = dynObjects[object];
-        if (thisObject.parent != false){
+        if (thisObject.parent){
             let parentObject = dynObjects[dynObjects[object].parent];
 
             let distance = parentObject.attachNodes[thisObject.connection[0]].y/2 - 
@@ -19,7 +19,9 @@ function doHierarchySync(){
     }
 }
 
-const GRAVITY = 9.81;
+let envStat = {
+    GRAVITY : 9.81
+}
 
 function doPhysics() {
     for (let object in dynObjects) {
@@ -30,11 +32,11 @@ function doPhysics() {
 Vehicle.prototype.doPhysics = function() {
     if (this.parent == false) {
         this.doMechanics();
-        if (throttle) {
-            this.calculateThrust(throttle);
+        if (inputs.throttle) {
+            this.calcThrust(inputs.throttle);
         }
-        if (rollThrottle) {
-            this.calculateRollThrust(rollThrottle);
+        if (inputs.rollThrottle) {
+            this.calcRollThrust(Math.abs(inputs.rollThrottle));
         }
     }
 
@@ -44,8 +46,8 @@ Vehicle.prototype.doPhysics = function() {
 };
 
 Vehicle.prototype.doMechanics = function() {
-    this.velocity.x += 0.02*(-0*calculateDrag(1, this.velocity.x, 0.0001, 3.7, 47.7, this.angle, this.mass.dry + this.mass.fuel));
-    this.velocity.y += 0.02*(-0*calculateDrag(1, this.velocity.x, 0.0001, 47.7, 3.7, this.angle, this.mass.dry + this.mass.fuel) - GRAVITY);
+    this.velocity.x += 0.02*(-0*calcDrag(1, this.velocity.x, 0.0001, 3.7, 47.7, this.angle, this.mass.dry + this.mass.fuel));
+    this.velocity.y += 0.02*(-0*calcDrag(1, this.velocity.x, 0.0001, 47.7, 3.7, this.angle, this.mass.dry + this.mass.fuel) - envStat.GRAVITY);
 
     this.x += 0.02 * this.velocity.x;
     this.y += 0.02 * this.velocity.y;
@@ -53,21 +55,21 @@ Vehicle.prototype.doMechanics = function() {
     this.angle += this.velocity.angular;
 }
 
-Vehicle.prototype.calculateThrust = function (throttle) {
-    let thrust = this.thrust.sealvl/((this.mass.dry + this.mass.fuel) * 50);
+Vehicle.prototype.calcThrust = function (throttle) {
+    let thrust = throttle * this.thrust.sealvl/((this.mass.dry + this.mass.fuel) * 50);
     this.velocity.y += thrust * sin(90-this.angle);
     this.velocity.x += thrust * cos(90-this.angle);
 }
 
-Vehicle.prototype.calculateRollThrust = function(rollThrottle) {
-    this.velocity.angular += rollThrottle*this.rollFactor/50;
+Vehicle.prototype.calcRollThrust = function(throttle) {
+    this.velocity.angular += throttle*inputs.rollThrottle*this.rollFactor/50;
 }
 
-function calculateDrag(density, vel, coefficient, height, width, angle, mass) {
+function calcDrag(density, vel, coefficient, height, width, angle, mass) {
     let area = 8;
     return (coefficient *((density * vel*vel)/2) * area);
 }
 
-Vehicle.prototype.calculateDensity = function() {
+Vehicle.prototype.calcDensity = function() {
     this.density = 1;
 }

@@ -20,8 +20,8 @@ function Vehicle(asset, parent, children, connection) {
 function dynObjectsSetup() {
     for (let objectID in dynObjects) {
         let thisObject = dynObjects[objectID];
-        if (thisObject.parent != false) {
-            if (dynObjects[thisObject.parent].parent == false) {
+        if (thisObject.parent) {
+            if (dynObjects[thisObject.parent].parent === null) {
                 thisObject.highestParent = dynObjects[objectID].parent;
             }
             else {
@@ -35,6 +35,15 @@ function dynObjectsSetup() {
             thisObject.x = worldObjects[startPoint].x;
         }
     }
+}
+
+let cstage = 0;
+
+function stage() {
+    let stageObj = dynObjects[stages[cstage].object];
+    p(stageObj);
+    cstage++;
+    return
 }
 
 let assets = {
@@ -81,7 +90,7 @@ let assets = {
                 y : 47
             }
         },
-        parent : false,
+        parent : null,
         currentSprite : "default",
         rollFactor : 0.1
     },
@@ -121,7 +130,7 @@ let assets = {
                 y : 2.3
             }
         },
-        parent : false,
+        parent : null,
         currentSprite : "default",
         rollFactor : 0.1
     },
@@ -157,7 +166,7 @@ let assets = {
                 y : 0
             }
         },
-        parent : false,
+        parent : null,
         currentSprite : "default",
         rollFactor : 0.1
     },

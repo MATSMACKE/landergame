@@ -1,14 +1,12 @@
 "use strict";
 
-function calculateEnginePosition() {
+function calcEnginePosition() {
 
 }
 
-function calculateContactPoint() {
+function calcContactPoint() {
 
 }
-
-let explosion;
 
 let startPoint;
 let landingZone;
@@ -23,7 +21,7 @@ function centerPositionX(objectWidth) {
 }
 
 function colorFade(c1, c2, value){
-  if (explosion == true) {
+  if (gameState.exploding == true) {
     return Math.round(Math.random()*255);
   }
   else {

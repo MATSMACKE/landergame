@@ -14,7 +14,7 @@ let particleSettings = {
 function Particle() {
   // Establish starting positions and velocities
   let radians = radian(player.angle);
-  if (explosion == false) {
+  if (gameState.exploding == false) {
     this.x = Math.round(((window.innerWidth)/2)-5) + (player.width/2) - engineTrigMultiplier*Math.sin(radians);
     this.y = engineTrigMultiplier*Math.cos(radians) + (player.height/2) + 30;
   }
@@ -22,20 +22,20 @@ function Particle() {
   else {
     this.x = Math.round(((window.innerWidth)/2)-5);
     this.y = 100;
-    explosionParticles ++;
+    gameState.explodingParticles ++;
   }
 
-  if (explosion == false) {
+  if (gameState.exploding == false) {
     // Determine original X-axis speed based on setting limitation
     this.vx = -Math.cos(radians)*(randomG() * 12 - 6) - Math.sin(radians)*((Math.random()*10) + 7);
     this.vy = Math.cos(radians)*((Math.random()*10) + 7) + Math.sin(radians)*(randomG() * 12 - 6);
-    this.explosion = false;
+    this.gameState.exploding = false;
   }
   else {
     this.vx = (randomG() * 12) - 6;
     this.vy = (randomG()*12) - 7;
     this.color = colorFade(0, 255, 0);
-    this.explosion = true;
+    this.gameState.exploding = true;
   }
 
   // Add new particle to the index
@@ -65,7 +65,7 @@ Particle.prototype.draw = function() {
   // Create the shapes
   let draw = gameArea.context;
   draw.beginPath();
-  if (this.explosion == true && this.explosion == true) {
+  if (this.gameState.exploding == true && this.gameState.exploding == true) {
     draw.fillStyle = RGBToHex(255, this.color, 0);
   }
   else {
@@ -82,7 +82,7 @@ Particle.prototype.draw = function() {
 }
 
 function drawParticles() {
-  if (((upPressed == true) && player.fuel > 0 && landed != true)||(explosion == true && explosionParticles < 1000)) {
+  if (((inputs.upPressed == true) && player.fuel > 0 && landed != true)||(gameState.exploding == true && gameState.explodingParticles < 1000)) {
     // Introducing a random chance of creating a particle
     // corresponding to an chance of 1 per second,
     // per "density" value

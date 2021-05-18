@@ -8,64 +8,74 @@ let upPressed = false;
 //Listen for KeyDown
 document.addEventListener('keydown', function(event) {
   if (event.key == "ArrowLeft") {
-    leftPressed = true;
+    inputs.leftPressed = true;
   }
+
   if (event.key == "ArrowRight") {
-    rightPressed = true;
+    inputs.rightPressed = true;
   }
+
   if (event.key == "ArrowUp") {
-    if (!flying) {
-      flying = true;
+    if (!gameState.flying) {
+      gameState.flying = true;
     }
-    upPressed = true;
+    inputs.upPressed = true;
   }
+
   if (event.key == 'r' || event.code == "Enter") {
     location.reload();
   }
+
   if (event.key == 'b') {
     history.back();
   }
+
   if (event.key == 'p' || event.code == "ShiftRight") {
-    if (paused == true) {
+    if (gameState.paused == true) {
       gameArea.interval = setInterval(update, 20);
-      paused = false;
+      gameState.paused = false;
     }
     else {
       clearInterval(gameArea.interval);
-      paused = true;
+      gameState.paused = true;
     }
+  }
+
+  if (event.code == "Space") {
+    stage();
   }
 }, true);
 
 document.addEventListener('keyup', function(event) {
   if (event.key == "ArrowLeft") {
-    leftPressed = false;
+    inputs.leftPressed = false;
   }
   if (event.key == "ArrowRight") {
-    rightPressed = false;
+    inputs.rightPressed = false;
   }
   if (event.key == "ArrowUp") {
-    upPressed = false;
+    inputs.upPressed = false;
   }
 }, true);
 
 function getInputs() {
-  if (upPressed) {
-    throttle = 1;
+  if (inputs.upPressed) {
+    inputs.throttle = 1;
   }
   else {
-    throttle = 0;
+    inputs.throttle = 0;
   }
-  if (rightPressed && leftPressed) {
-    rollThrottle = 0;
+
+  if (inputs.rightPressed && inputs.leftPressed) {
+    inputs.rollThrottle = 0;
   }
-  else if (rightPressed) {
-    rollThrottle = 1;
+  else if (inputs.rightPressed) {
+    inputs.rollThrottle = 1;
   }
-  else if (leftPressed) {
-    rollThrottle = -1;
+  else if (inputs.leftPressed) {
+    inputs.rollThrottle = -1;
   }
   else {
-    rollThrottle = 0;
+    inputs.rollThrottle = 0;
   }
 }

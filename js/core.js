@@ -1,11 +1,20 @@
 "use strict";
 
-let paused = false;
+let gameState = {
+  paused : false,
+  flying : false,
+  exploding : false
+}
 
-let flying = false;
+let inputs = {
+  throttle : 0,
+  rollThrottle : 0,
+  upPressed : false,
+  leftPressed : false,
+  rightPressed : false
+}
 
 let throttle = 0;
-let rollThrottle = 0;
 
 let gameArea = {
   canvas : document.createElement("canvas"),
@@ -29,10 +38,10 @@ let gameArea = {
 function update() {
   gameArea.clear();
   getInputs();
-  if (flying == true) {
+  if (gameState.flying == true) {
     doPhysics();
   }
-  doHierarchySync();
+  syncHierarchy();
   drawScene();
   drawUI();
 }
