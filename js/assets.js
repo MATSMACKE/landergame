@@ -48,17 +48,19 @@ function stage() {
 }
 
 Vehicle.prototype.separate = function() {
-    let children = dynObjects[this.parent].children;
+    let parent = dynObjects[this.parent];
+    let children = parent.children;
     let thisChild = 0;
     for (let i in children) {
         if (children[i] == this.id) {
             thisChild = i;
         }
     }
-    delete dynObjects[this.parent].children[thisChild];
+    delete parent.children[thisChild];
 
-    this.velocity = Object.create(dynObjects[this.parent].velocity);
-    this.angle = dynObjects[this.parent].angle;
+    this.velocity.x = parent.velocity.x;
+    this.velocity.y = parent.velocity.y;
+    this.angle = parent.angle;
 
     this.parent = null;
 

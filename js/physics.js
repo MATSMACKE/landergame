@@ -3,8 +3,8 @@
 function syncHierarchy(){
     for (let object in dynObjects){
         let thisObject = dynObjects[object];
-        if (thisObject.parent){
-            let parentObject = dynObjects[dynObjects[object].parent];
+        if (thisObject.parent) {
+            let parentObject = dynObjects[thisObject.parent];
 
             let distance = parentObject.attachNodes[thisObject.connection[0]].y/2 - 
             thisObject.attachNodes[thisObject.connection[1]].y/2 + 
@@ -32,12 +32,13 @@ function doPhysics() {
 Vehicle.prototype.doPhysics = function() {
     if (this.parent === null) {
         this.doMechanics();
+        //p(dynObjects.f9s2.angle);
         if (this.id == activeObject) {
             if (inputs.throttle) {
                 this.calcThrust(inputs.throttle);
             }
             if (inputs.rollThrottle) {
-                this.calcRollThrust(Math.abs(inputs.rollThrottle));
+                this.calcRollThrust();
             }
         }
     }
@@ -63,8 +64,8 @@ Vehicle.prototype.calcThrust = function (throttle) {
     this.velocity.x += thrust * cos(90-this.angle);
 }
 
-Vehicle.prototype.calcRollThrust = function(throttle) {
-    this.velocity.angular += throttle*inputs.rollThrottle*this.rollFactor/50;
+Vehicle.prototype.calcRollThrust = function() {
+    this.velocity.angular += inputs.rollThrottle*this.rollFactor/50;
 }
 
 function calcDrag(density, vel, coefficient, height, width, angle, mass) {
