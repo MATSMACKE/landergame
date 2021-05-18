@@ -29,7 +29,7 @@ function colorFade(c1, c2, value){
   }
 }
 
-function bellCurveRandom(){
+function normalRandom(){
     let r = 0;
     for(let i = 3; i > 0; i --){
         r += Math.random();

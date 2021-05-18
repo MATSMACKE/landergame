@@ -41,9 +41,25 @@ let cstage = 0;
 
 function stage() {
     let stageObj = dynObjects[stages[cstage].object];
-    p(stageObj);
+    //p(stageObj);
+    if (stages[cstage].action == "separate") {
+        stageObj.separate();
+    }
     cstage++;
     return
+}
+
+Vehicle.prototype.separate = function() {
+    let children = dynObjects[this.parent].children;
+    let thisChild = 0;
+    for (let i in children) {
+        if (children[i] == this.id) {
+            thisChild = i;
+        }
+    }
+    delete dynObjects[this.parent].children[thisChild];
+    this.velocity = Object.create(dynObjects[this.parent].velocity);
+    this.parent = null;
 }
 
 let assets = {
@@ -92,7 +108,8 @@ let assets = {
         },
         parent : null,
         currentSprite : "default",
-        rollFactor : 0.1
+        rollFactor : 0.1,
+        id : "f9s1"
     },
     f9s2 : {
         sprites : {
@@ -132,7 +149,8 @@ let assets = {
         },
         parent : null,
         currentSprite : "default",
-        rollFactor : 0.1
+        rollFactor : 0.1,
+        id : "f9s2"
     },
     dragon : {
         sprites : {
@@ -168,7 +186,8 @@ let assets = {
         },
         parent : null,
         currentSprite : "default",
-        rollFactor : 0.1
+        rollFactor : 0.1,
+        id : "dragon"
     },
 }
 

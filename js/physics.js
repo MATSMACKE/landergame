@@ -30,7 +30,7 @@ function doPhysics() {
 }
 
 Vehicle.prototype.doPhysics = function() {
-    if (this.parent == false) {
+    if (this.parent === null) {
         this.doMechanics();
         if (inputs.throttle) {
             this.calcThrust(inputs.throttle);
