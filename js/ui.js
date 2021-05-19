@@ -157,7 +157,7 @@ function drawText() {
         unit = "m";
       } else if (Math.abs(num) < 10000) {
         num = (num*0.001).toFixed(1);
-        unit = "km"
+        unit = "km";
       } else {
         num = Math.round(num*0.001)
         unit = "km";
@@ -167,10 +167,20 @@ function drawText() {
         unit = "m/s";
       } else if (Math.abs(num) < 10000) {
         num = (num*0.001).toFixed(1);
-        unit = "km/s"
+        unit = "km/s";
       } else {
         num = Math.round(num*0.001)
         unit = "km/s";
+      }
+     } else if (box.type == "acceleration") {
+      if (Math.abs(num) < 1000) {
+        unit = "m/s\xB2";
+      } else if (Math.abs(num) < 10000) {
+        num = (num*0.001).toFixed(1);
+        unit = "km/s\xB2";
+      } else {
+        num = Math.round(num*0.001)
+        unit = "km/s\xB2";
       }
     }
     draw.fillText(box.name + num + unit, textDims.x, textDims.y);
