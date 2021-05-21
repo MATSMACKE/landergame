@@ -70,10 +70,21 @@ Vehicle.prototype.draw = function() {
 
 //Draw a green rectangle as the ground
 function drawGround(){
-  draw.beginPath();
-  draw.rect(0, gameArea.canvas.height - cameraPosition.y, gameArea.canvas.width, gameArea.canvas.height);
+  for (let area in worldTerrain.land) {
+    drawGroundRect(worldTerrain.land[area][0], worldTerrain.land[area][1] - worldTerrain.land[area][0], gameColors.ground);
+  }
+  for (let area in worldTerrain.ocean) {
+    drawGroundRect(worldTerrain.ocean[area][0], worldTerrain.ocean[area][1] - worldTerrain.ocean[area][0], gameColors.ocean);
+  }
+}
 
-  draw.fillStyle = gameColors.ground;
+function drawGroundRect(x, width, color) {
+  p(((x*2) + cameraPosition.x)+(width*2));
+  //p(cameraPosition.x);
+  draw.beginPath();
+  draw.rect((x*2) + cameraPosition.x, gameArea.canvas.height - cameraPosition.y, width*2, gameArea.canvas.height);
+
+  draw.fillStyle = color;
   draw.fill();
 }
 
