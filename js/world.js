@@ -1,5 +1,13 @@
 "use strict";
 
+let locations = {
+  lc39a : 0,
+  lc36 : 7000,
+  bcsa : -1836974,
+  bcsb : -1836998,
+  bcols: -1836472
+}
+
 let worldObjects = {
   lc39a : {
     sprite : "lc39a.png",
@@ -18,14 +26,16 @@ let worldObjects = {
     height: 150,
     center : 235,
     angle: 0
-  }/*,
-  bocaChica : {
-    sprite : "bocaChica.png",
+  },
+  boca : {
+    sprite : "boca.png",
     x : -1837000,
     y : 0,
-    width : 0,
+    width : 600,
+    height : 200,
+    center : 10,
     angle: 0
-  },
+  }/*,
   ocisly : {
     sprite : "ocisly.png",
     x : 600000,

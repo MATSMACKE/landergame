@@ -32,7 +32,7 @@ function dynObjectsSetup() {
             thisObject.highestParent = objectID;
             thisObject.y += thisObject.height/2;
 
-            thisObject.x = worldObjects[startPoint].x;
+            thisObject.x = locations[startPoint];
         }
     }
 }

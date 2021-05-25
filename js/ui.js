@@ -6,15 +6,14 @@ function drawUI() {
   //drawFuelIndicator();
 }
 
+let sx = locations[startPoint];
+let lx = locations[landingZone];
+
 function drawXLocator() {
   draw.fillStyle = "black";
   draw.fillRect(10, gameArea.canvas.height - 20, gameArea.canvas.width - 20, 10);
 
   let ax = dynObjects[activeObject].x;
-  let sx = worldObjects[startPoint].x;
-  let lx = worldObjects[landingZone].x;
-
-  calcBallisticEstimate();
 
   if (ax < sx) {
     drawXLocation("#656565", 1, 1);
@@ -35,9 +34,16 @@ function drawXLocator() {
       drawXLocation("green", calcBallisticEstimate() - lx, ax - lx);
     }
   } else if (sx <= ax && ax <= lx) {
-    drawXLocation("green", calcBallisticEstimate(), lx - sx);
+    
 
-    drawXLocation("white", ax, lx - sx);
+    if (sx > lx) {
+      drawXLocation("green", calcBallisticEstimate() - lx, lx - sx);
+      drawXLocation("white", ax - lx, lx - sx);
+    }
+    else {
+      drawXLocation("green", calcBallisticEstimate() - sx, lx - sx);
+      drawXLocation("white", ax - sx, lx - sx);
+    }
   }
 }
 
@@ -68,7 +74,7 @@ function initUI() {
       name : "Downrange: ",
       bgRect : [0, 1, 160, "left", "top"],
       num : function() {
-        return Math.round(dynObjects[activeObject].x);
+        return Math.round(dynObjects[activeObject].x - locations[startPoint]);
       },
       type : "distance"
     },
@@ -103,7 +109,7 @@ function initUI() {
       num : function() {
         let obj = dynObjects[activeObject];
         let timeToImpact = (Math.sqrt((2 * envStat.GRAVITY * obj.y) + (obj.velocity.y ** 2)) + obj.velocity.y)/envStat.GRAVITY;
-        return Math.round((obj.velocity.x * timeToImpact) + obj.x);
+        return Math.round((obj.velocity.x * timeToImpact) + obj.x - locations[startPoint]);
       },
       type : "distance"
     }

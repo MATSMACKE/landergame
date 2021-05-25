@@ -79,7 +79,6 @@ function drawGround(){
 }
 
 function drawGroundRect(x, width, color) {
-  p(((x*2) + cameraPosition.x)+(width*2));
   //p(cameraPosition.x);
   draw.beginPath();
   draw.rect((x*2) + cameraPosition.x, gameArea.canvas.height - cameraPosition.y, width*2, gameArea.canvas.height);
