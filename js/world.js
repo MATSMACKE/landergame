@@ -1,11 +1,11 @@
 "use strict";
 
 let locations = {
-  lc39a : 0,
-  lc36 : 7000,
-  bcsa : -1836974,
-  bcsb : -1836998,
-  bcols: -1836472
+  lc39a : [0, 0],
+  lc36 : [7000, 0],
+  bcsa : [-1836974, 7],
+  bcsb : [-1836998, 7],
+  bcols: [-1836472, 30]
 }
 
 let worldObjects = {

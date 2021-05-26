@@ -30,9 +30,9 @@ function dynObjectsSetup() {
         }
         else {
             thisObject.highestParent = objectID;
-            thisObject.y += thisObject.height/2;
+            thisObject.y += thisObject.height/2 + locations[startPoint][1];
 
-            thisObject.x = locations[startPoint];
+            thisObject.x = locations[startPoint][0];
         }
     }
 }

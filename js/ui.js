@@ -6,8 +6,8 @@ function drawUI() {
   //drawFuelIndicator();
 }
 
-let sx = locations[startPoint];
-let lx = locations[landingZone];
+let sx = locations[startPoint][0];
+let lx = locations[landingZone][0];
 
 function drawXLocator() {
   draw.fillStyle = "black";
@@ -47,10 +47,17 @@ function drawXLocator() {
   }
 }
 
-function calcBallisticEstimate() {
+function calcTimeToImpact() {
   let obj = dynObjects[activeObject];
   let timeToImpact = (Math.sqrt((2 * envStat.GRAVITY * obj.y) + (obj.velocity.y ** 2)) + obj.velocity.y)/envStat.GRAVITY;
-  return (obj.velocity.x * timeToImpact) + obj.x;
+
+  return timeToImpact
+}
+
+function calcBallisticEstimate() {
+  let obj = dynObjects[activeObject];
+
+  return (obj.velocity.x * calcTimeToImpact()) + obj.x;
 }
 
 function drawXLocation(color, value, scale) {
@@ -107,11 +114,17 @@ function initUI() {
       name : "Impact: ",
       bgRect : [0, 1, 160, "right", "top"],
       num : function() {
-        let obj = dynObjects[activeObject];
-        let timeToImpact = (Math.sqrt((2 * envStat.GRAVITY * obj.y) + (obj.velocity.y ** 2)) + obj.velocity.y)/envStat.GRAVITY;
-        return Math.round((obj.velocity.x * timeToImpact) + obj.x - locations[startPoint]);
+        return Math.round(calcBallisticEstimate());
       },
       type : "distance"
+    },
+    in : {
+      name : "Impact In: ",
+      bgRect : [0, 2, 160, "right", "top"],
+      num : function() {
+        return calcTimeToImpact();
+      },
+      type : "time"
     }
   }
 }
@@ -188,6 +201,9 @@ function drawText() {
         num = Math.round(num*0.001)
         unit = "km/s\xB2";
       }
+    } else if (box.type == "time") {
+      unit = "s";
+      num = Math.round(num);
     }
     draw.fillText(box.name + num + unit, textDims.x, textDims.y);
   }
